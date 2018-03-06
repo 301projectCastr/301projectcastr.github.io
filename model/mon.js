@@ -56,22 +56,22 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
     })
       .then(() => page('/'))
       .catch(errorCallback);
-
+      
+  Mon.getMonStats = (name) =>
+    $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+      .then( results => {
+        let name = results.name;
+        let speed = results.stats[0].base_stat;
+        let specialDefense = results.stats[1].base_stat;
+        let specialAttack = results.stats[2].base_stat;
+        let defense = results.stats[3].base_stat;
+        let attack = results.stats[4].base_stat;
+        let hp = results.stats[5].base_stat;
+        console.log(`name: ${name}, speed: ${speed}, specialDefense: ${specialDefense}, specialAttack: ${specialAttack}, defense: ${defense}, attack: ${attack} hp: ${hp},`);
+      })
+      .catch();
   module.Mon = Mon;
   
-})(app)
+})(app);
 
-let getMonStats = () =>
-  $.get('https://pokeapi.co/api/v2/pokemon/2/')
-    .then( results => {
-      let name = results.name;
-      let speed = results.stats[0].base_stat;
-      let specialDefense = results.stats[1].base_stat;
-      let specialAttack = results.stats[2].base_stat;
-      let defense = results.stats[3].base_stat;
-      let attack = results.stats[4].base_stat;
-      let hp = results.stats[5].base_stat;
-      console.log(`name: ${name}, speed: ${speed}, specialDefense: ${specialDefense}, specialAttack: ${specialAttack}, defense: ${attack}, hp: ${hp},`)
-    })
-    .catch();
 

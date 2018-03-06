@@ -21,8 +21,9 @@ var app = app || {};
 
   monView.initNewMon = () => {
     monView.reset();
+    console.log('inside initNewMon');
     $('.new-mon-view').show();
-    $('#new-mon-form').on('submit', monView.handleRequestNew); // It's possible this handler could be replaced with fetchOne?
+    $('#new-mon-form').on('submit', monView.handleRequestNew);
   };
 
   monView.initDetailView = () => {
@@ -59,11 +60,8 @@ var app = app || {};
   monView.handleRequestNew = event => {
     event.preventDefault();
     // api request to get possible pokemon back. Will this be the fetchOne?
-    app.Mon.fetchOne(ctx, callback)
-      // run logic on the full results to filter based on the val()s from the dropdowns. Does this happen in the fetchOne method?
-      // once a specific character has been chosen, go to the detail page to choose nick...page('/mon/:mon_id/'));
+    app.Mon.getMonStats(event.target.pokeSelect.vakue);
   };
-
 
   module.monView = monView;
 })(app);
