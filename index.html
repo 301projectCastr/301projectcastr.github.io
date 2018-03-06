@@ -7,11 +7,12 @@
   <title>Document</title>
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mouse+Memoirs">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layouts.css">
   <link rel="stylesheet" href="styles/modules.css">
 
-   <!-- tempalte for Pokemon card -->
+   <!-- template for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
     <section class="poke-card" data-monId="{{id}}">
       <img src="{{image_url}}">
@@ -35,7 +36,7 @@
       <button class="select-mon-button">Choose</button>
     </section>
   </script>
-  <!-- tempalte for the error route -->
+  <!-- template for the error route -->
   <script id="err-template" type="text/x-handlebars-template">
     <section>
       <h1>Looks like you missed your route!</h1>
@@ -44,18 +45,18 @@
   </script>
 </head>
 <body>
-  <header>
-    <img src="img/Chinpokomon1.png" alt="logo">
-    <h1>Pokemon Fight Club</h1>
-    <nav>
-      <ul>
-        <li> <a href="/">Home</a></li>
-        <li> <a href="/logout">Logout</a></li>
-      </ul>
-    </nav>
-    <!-- <h2>{{userName}}</h2> -->
-  </header>
   <main>
+      <header>
+          <img src="img/Chinpokomon1.png" alt="logo">
+          <h1>Pokemon Fight Club</h1>
+          <nav>
+            <ul>
+              <li> <a href="/">Home</a></li>
+              <li> <a href="/logout">Logout</a></li>
+            </ul>
+          </nav>
+          <!-- <h2>{{userName}}</h2> -->
+        </header>
     <!-- View for new user, not logged in -->
     <section class="login-view header">
       <form id="login-form">
