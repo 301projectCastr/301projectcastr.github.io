@@ -34,11 +34,32 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(results => ctx.mon = results[0])
       .then(callback)
       .catch(errorCallback);
+  
+  Mon.catchOne = name => {
+    $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+    .then(results => )
+  };
 
-  Mon.create = mon =>
-    $.post(`${__API_URL__}/api/v1/mon`, mon)
-      .then(() => page('/'))
+  Mon.create = (obj, callback) => {
+    let mon = {
+      user_id: user_id, 
+      mon_nick: obj.mon_nick ? obj.mon_nick : '', 
+      mon_name: obj.mon_name, 
+      image_url: obj.image_url,
+      wins: wins ? obj.wins : 0, 
+      losses: losses ? obj.losses : 0, 
+      levels: levels ? obj.levels : 1, 
+      hp_stat: obj.hp_stat, 
+      atk_stat: obj.atk_stat, 
+      def_stat: obj.def_stat, 
+      satk_stat: obj.satk_stat, 
+      sdef_stat: obj.sdef_stat, 
+      speed_stat: obj.speed_stat
+    }
+    $.post(`${__API_URL__}/mon`, mon)
+      .then(callback)
       .catch(errorCallback);
+  }
 
   Mon.update = (mon, monId) =>
     $.ajax({
@@ -56,20 +77,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
     })
       .then(() => page('/'))
       .catch(errorCallback);
-      
-  Mon.getMonStats = (name) =>
-    $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
-      .then( results => {
-        let name = results.name;
-        let speed = results.stats[0].base_stat;
-        let specialDefense = results.stats[1].base_stat;
-        let specialAttack = results.stats[2].base_stat;
-        let defense = results.stats[3].base_stat;
-        let attack = results.stats[4].base_stat;
-        let hp = results.stats[5].base_stat;
-        console.log(`name: ${name}, speed: ${speed}, specialDefense: ${specialDefense}, specialAttack: ${specialAttack}, defense: ${defense}, attack: ${attack} hp: ${hp},`);
-      })
-      .catch();
   module.Mon = Mon;
   
 })(app);

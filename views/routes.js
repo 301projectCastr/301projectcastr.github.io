@@ -7,6 +7,5 @@ page('/mon/new', ctx => app.monView.initNewMon(ctx));  // create new pokemon.
 // page('/pick_fight', ctx => ); // pick fight page.
 // page('/fight', ctx => ); // fight page.
 
-page('/', () => app.Mon.getMonStats('ralts'));
-page('/mon', () => app.Mon.getMonStats('ralts'));
+// page('/', () => app.Mon.getMonStats('ralts'));
 page();

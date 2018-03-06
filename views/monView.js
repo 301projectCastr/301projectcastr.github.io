@@ -21,16 +21,35 @@ var app = app || {};
 
   monView.initNewMon = () => {
     monView.reset();
-    console.log('inside initNewMon');
     $('.new-mon-view').show();
-    $('#new-mon-form').on('submit', monView.handleRequestNew);
+    $('#new-mon-form').on('submit', function (event) {
+      let name = event.target.pokeSelect.vakue;
+      $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+        .then( results => {
+          let newMon = {
+            user_id: JSON.parse(localStorage.user),
+            mon_name: results.name,
+            image_url: results.sprites.front_default,
+            speed_stat: results.stats[0].base_stat,
+            sdef_stat: results.stats[1].base_stat,
+            satk_stat: results.stats[2].base_stat,
+            def_stat: results.stats[3].base_stat,
+            atk_stat: results.stats[4].base_stat,
+            hp_stat: results.stats[5].base_stat
+          };
+          module.Mon.create(newMon, module.monView.initDetailView);
+        });
+    });
   };
 
-  monView.initDetailView = () => {
+  monView.initDetailView = (obj) => {
     monView.reset();
     $('.detail-view').show();
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.detailView').append(template(obj));
     $('#nick-name-input').on('submit', function(event) {
       event.preventDefault();
+      
 
       // let mon = {
       //   mon_nick: event.target.....,
