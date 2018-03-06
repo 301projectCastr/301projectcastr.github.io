@@ -2,6 +2,7 @@
 
 var app = app || {};
 var __API_URL__ = 'http://localhost:3000';
+var __POKE_API__= 'http://pokeapi.co/api/v2/';
 
 (function(module) {
   function errorCallback(err) {
@@ -54,4 +55,4 @@ var __API_URL__ = 'http://localhost:3000';
 
 
   module.Mon = Mon;
-})(app)
+})(app);
