@@ -58,7 +58,11 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   module.Mon = Mon;
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> dev-client
 })(app)
 
 let getMonStats = () =>
@@ -73,4 +77,9 @@ let getMonStats = () =>
       let hp = results.stats[5].base_stat;
       console.log(`name: ${name}, speed: ${speed}, specialDefense: ${specialDefense}, specialAttack: ${specialAttack}, defense: ${attack}, hp: ${hp},`)
     })
+<<<<<<< HEAD
     .catch();
+=======
+    .catch();
+
+>>>>>>> dev-client
