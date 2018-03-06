@@ -47,15 +47,19 @@
   <header>
     <img src="img/Chinpokomon1.png" alt="logo">
     <h1>Pokemon Fight Club</h1>
-    <nav></nav>
+    <nav>
+      <ul>
+        <li> <a href="/">Home</a></li>
+        <li> <a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
     <!-- <h2>{{userName}}</h2> -->
   </header>
   <main>
     <!-- View for new user, not logged in -->
     <section class="login-view header">
       <form id="login-form">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="text" name="passWord" placeholder="Enter A Password" required>
+        <input id="username-input" type="text" name="username" placeholder="Username" required>
         <button type="submit">Prepare to Battle!</button>
       </form>
     </section>
@@ -67,7 +71,7 @@
       </div>
     </section>
     <!-- Create a new pokemon -->
-    <section class="new-mon-view container">
+    <section class="new-mon-view header">
       <h2>Catch New Pokemon</h2>
       <p>Choose options below to catch your pokemon</p>
       <form>
@@ -104,7 +108,7 @@
       </form>
     </section>
     <!-- PickFIght View section -->
-    <section class="pick-fight-view container">
+    <section class="pick-fight-view header">
       <div class="pokemon-champ"></div>
       <section class="opponents-holder">
         <h2>Pick Your Opponent</h2>
@@ -131,9 +135,8 @@
 
   <!-- App resources -->
   <script src="model/mon.js"></script>
-
-  <!-- <script src="views/monView.js"></script>
-  <script src="views/errorView.js"></script> -->
+  <script src="views/monView.js"></script>
+  <script src="views/errorView.js"></script>
 
   <script src="views/routes.js"></script>
 </body>

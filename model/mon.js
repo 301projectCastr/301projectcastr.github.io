@@ -71,5 +71,4 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   module.Mon = Mon;
-
 })(app);
