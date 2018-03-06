@@ -58,12 +58,8 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   module.Mon = Mon;
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> dev-client
-})(app)
+})(app);
 
 let getMonStats = () =>
   $.get('https://pokeapi.co/api/v2/pokemon/2/')
@@ -77,9 +73,5 @@ let getMonStats = () =>
       let hp = results.stats[5].base_stat;
       console.log(`name: ${name}, speed: ${speed}, specialDefense: ${specialDefense}, specialAttack: ${specialAttack}, defense: ${attack}, hp: ${hp},`)
     })
-<<<<<<< HEAD
-    .catch();
-=======
-    .catch();
 
->>>>>>> dev-client
+    .catch();
