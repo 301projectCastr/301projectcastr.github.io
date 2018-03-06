@@ -8,9 +8,6 @@ var app = app || {};
   monView.reset = () => {
     $('.container').hide(); // hide all containers
     $('.header').hide(); // hide stuff we don't want emptied as well
-    if (localStorage.user) {
-
-    }
   };
 
   monView.initIndexPage = () => {
