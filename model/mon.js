@@ -14,6 +14,11 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
     Object.keys(rawMonObj).forEach(key => this[key] = rawMonObj[key]);
   }
 
+  Mon.prototype.toHtml = function() {
+    let template = Handlebars.compile($('#poke-card-template').text());
+    return template(this);
+  };
+
   Mon.all = [];
 
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
