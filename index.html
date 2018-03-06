@@ -14,7 +14,7 @@
    <!-- tempalte for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
     <section class="poke-card">
-      <img>
+      <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{nic}}</li>
         <li>Species: {{name}}</li>
@@ -38,34 +38,79 @@
 </head>
 <body>
   <header>
+    <img src="img/Chinpokomon1.png" alt="logo">
     <h1>Pokemon Fight Club</h1>
-    <h2>{{userName}}</h2>
+    <nav></nav>
+    <!-- <h2>{{userName}}</h2> -->
   </header>
   <main>
+    <!-- View for new user, not logged in -->
+    <section class="login-view container">
+      <form id="login-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="passWord" placeholder="Enter A Password" required>
+        <button type="submit">Prepare to Battle!</button>
+      </form>
+    </section>
     <!-- loggedin View section -->
-    <div class="logged-In-View header">
-      <button class="make-new-mon-button">Catch New Pokemon</button>
-      <h2>My Pokemon</h2>
-    </div>
-      <section class="login-view container">
-        <img src="img/Chinpokomon1.png" alt="logo">
-        <form id="login-form">
-          <input type="text" name="userName" placeholder="Username" required>
-          <input type="text" name="passWord" placeholder="Enter A Password " required>
-          <button type="submit">Prepare to Battle!</button>
-        </form>
-      </section>
-    <Section class="pokemon-list header"></Section>
+    <section class="pokemon-list header container"></section>
+      <div class="logged-in-view header">
+        <button class="make-new-mon-button">Catch New Pokemon</button>
+        <h2>My Pokemon</h2>
+      </div>
+    </section>
+    <!-- Create a new pokemon -->
+    <section class="new-mon-view container">
+      <h2>Catch New Pokemon</h2>
+      <p>Choose options below to catch your pokemon</p>
+      <form>
+          <select id="">
+              <option value="">-- Option 1 --</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value="">-- Option 2 --</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value="">-- Option 3 --</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value="">-- Option 4 --</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value="">-- Option 5 --</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+      </form>
+    </section>
     <!-- PickFIght View section -->
-    <section class="pick-fight-view">
-      <div class="pokemon-champ container"></div>
-      <section class="opponants-holder">
-        <h2>Pick you opponant</h2>
-        <div class="opponent container"></div>
+    <section class="pick-fight-view container">
+      <div class="pokemon-champ"></div>
+      <section class="opponents-holder">
+        <h2>Pick Your Opponent</h2>
+        <div class="opponents-list"></div>
       </section>
     </section>
     <!-- Fight View section -->
-    <!-- PickFIght View section -->
+    <section class="fight-view container">
+      <div class="pokemon-champ"></div>
+        <h4>Fight info text or imaging goes here</h4>
+      <div class="opponent-view"></div>
+      <button id="fight-button">Fight!</button>
+    </section>
   </main>
 
   <!-- CDN resources -->
