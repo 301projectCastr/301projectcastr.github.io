@@ -2,6 +2,7 @@
 
 var app = app || {};
 var __API_URL__ = 'http://localhost:3000';
+var __POKE_API__= 'http://pokeapi.co/api/v2/';
 
 (function(module) {
   function errorCallback(err) {
@@ -12,6 +13,11 @@ var __API_URL__ = 'http://localhost:3000';
   function Mon(rawMonObj) {
     Object.keys(rawMonObj).forEach(key => this[key] = rawMonObj[key]);
   }
+
+  Mon.prototype.toHtml = function() {
+    let template = Handlebars.compile($('#poke-card-template').text());
+    return template(this);
+  };
 
   Mon.all = [];
 
@@ -52,6 +58,7 @@ var __API_URL__ = 'http://localhost:3000';
       .catch(errorCallback);
 
   module.Mon = Mon;
+
 })(app)
 
 let getMonStats = () =>
