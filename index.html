@@ -12,17 +12,17 @@
   <link rel="stylesheet" href="styles/modules.css">
 
    <!-- tempalte for Pokemon card -->
-  <script id="pokeCardTemplate" type="text/x-handlebars-template">
-    <section class="pokeCard">
+  <script id="poke-card-template" type="text/x-handlebars-template">
+    <section class="poke-card">
       <img>
-      <ul class="pokeCardFIghtInfo">
+      <ul class="poke-card-fight-info">
         <li>Name: {{nic}}</li>
         <li>Species: {{name}}</li>
         <li>Wins: {{wins}}</li>
         <li>Loses: {{loses}}</li>
         <li>Levels: {{levels}}</li>
       </ul>
-      <ul class="pokeCardStats">
+      <ul class="poke-card-stats">
           <li>Type 1: {{type1}}</li>
           <li>Type 2: {{type2}}</li>
           <li>HP: {{hp}}</li>
@@ -32,7 +32,7 @@
           <li>Special Defense: {{sDef}}</li>
           <li>Speed: {{speed}}</li>
       </ul>
-      <button class="selectMonButton">Choose</button>
+      <button class="select-mon-button">Choose</button>
     </section>
   </script>
 </head>
@@ -42,10 +42,22 @@
     <h2>{{userName}}</h2>
   </header>
   <main>
-    <div class="loggedInView container">
-      <button class="makeNewMonButton">Catch New Pokemon</button>
+    <!-- loggedin View section -->
+    <div class="logged-In-View header">
+      <button class="make-new-mon-button">Catch New Pokemon</button>
       <h2>My Pokemon</h2>
     </div>
+    <Section class="pokemon-list header"></Section>
+    <!-- PickFIght View section -->
+    <section class="pick-fight-view">
+      <div class="pokemon-champ container"></div>
+      <section class="opponants-holder">
+        <h2>Pick you opponant</h2>
+        <div class="opponent container"></div>
+      </section>
+    </section>
+    <!-- Fight View section -->
+    <!-- PickFIght View section -->
   </main>
 
   <!-- CDN resources -->
