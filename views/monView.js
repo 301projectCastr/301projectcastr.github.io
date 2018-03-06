@@ -97,7 +97,7 @@ var app = app || {};
 
   monView.logout = () => {
     localStorage.clear();
-    page('/');
+    window.location = '../';
   };
 
 
