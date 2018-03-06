@@ -10,8 +10,43 @@
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/modules.css">
+
+   <!-- tempalte for Pokemon card -->
+  <script id="pokeCardTemplate" type="text/x-handlebars-template">
+    <section class="pokeCard">
+      <img>
+      <ul class="pokeCardFIghtInfo">
+        <li>Name: {{nic}}</li>
+        <li>Species: {{name}}</li>
+        <li>Wins: {{wins}}</li>
+        <li>Loses: {{loses}}</li>
+        <li>Levels: {{levels}}</li>
+      </ul>
+      <ul class="pokeCardStats">
+          <li>Type 1: {{type1}}</li>
+          <li>Type 2: {{type2}}</li>
+          <li>HP: {{hp}}</li>
+          <li>Attack: {{atk}}</li>
+          <li>Defense: {{def}}</li>
+          <li>Special Attack: {{sAtk}}</li>
+          <li>Special Defense: {{sDef}}</li>
+          <li>Speed: {{speed}}</li>
+      </ul>
+      <button class="selectMonButton">Choose</button>
+    </section>
+  </script>
 </head>
 <body>
+  <header>
+    <h1>Pokemon Fight Club</h1>
+    <h2>{{userName}}</h2>
+  </header>
+  <main>
+    <div class="loggedInView container">
+      <button class="makeNewMonButton">Catch New Pokemon</button>
+      <h2>My Pokemon</h2>
+    </div>
+  </main>
 
   <!-- CDN resources -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
