@@ -8,13 +8,13 @@
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/icons.css">
   <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/layouts.css">
   <link rel="stylesheet" href="styles/modules.css">
 
    <!-- tempalte for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card">
-      <img>
+    <section class="poke-card" data-monId="{{id}}">
+      <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{nic}}</li>
         <li>Species: {{name}}</li>
@@ -35,48 +35,106 @@
       <button class="select-mon-button">Choose</button>
     </section>
   </script>
+  <!-- tempalte for the error route -->
+  <script id="err-template" type="text/x-handlebars-template">
+    <section>
+      <h1>Looks like you missed your route!</h1>
+      <p>{{status}}: {{statusText}}</p>
+    </section>
+  </script>
 </head>
 <body>
   <header>
+    <img src="img/Chinpokomon1.png" alt="logo">
     <h1>Pokemon Fight Club</h1>
-    <h2>{{userName}}</h2>
+    <nav></nav>
+    <!-- <h2>{{userName}}</h2> -->
   </header>
   <main>
+    <!-- View for new user, not logged in -->
+    <section class="login-view header">
+      <form id="login-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="passWord" placeholder="Enter A Password" required>
+        <button type="submit">Prepare to Battle!</button>
+      </form>
+    </section>
     <!-- loggedin View section -->
-    <div class="logged-In-View header">
-      <button class="make-new-mon-button">Catch New Pokemon</button>
-      <h2>My Pokemon</h2>
-    </div>
-      <section class="login-view container">
-        <img src="img/Chinpokomon1.png" alt="logo">
-        <form id="login-form">
-          <input type="text" name="userName" placeholder="Username" required>
-          <input type="text" name="passWord" placeholder="Enter A Password " required>
-          <button type="submit">Prepare to Battle!</button>
-        </form>
-      </section>
-    <Section class="pokemon-list header"></Section>
+    <section class="pokemon-list header"></section>
+      <div class="logged-in-view">
+        <button class="make-new-mon-button">Catch New Pokemon</button>
+        <h2>My Pokemon</h2>
+      </div>
+    </section>
+    <!-- Create a new pokemon -->
+    <section class="new-mon-view container">
+      <h2>Catch New Pokemon</h2>
+      <p>Choose options below to catch your pokemon</p>
+      <form>
+          <select id="poke-select">
+              <option value="ralts">Ralts</option>
+              <option value="spheal">Spheal</option>
+              <option value="torchic">Torchic</option>
+              <option value="leafeon">Leafeon</option>
+          </select>
+          <!-- <select id="">
+              <option value=""> Option 2 </option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value=""> Option 3 </option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select> -->
+          <!-- <select id="">
+              <option value="">Option 4</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select>
+          <select id="">
+              <option value=""> Option 5</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select> -->
+      </form>
+    </section>
     <!-- PickFIght View section -->
-    <section class="pick-fight-view">
-      <div class="pokemon-champ container"></div>
-      <section class="opponants-holder">
-        <h2>Pick you opponant</h2>
-        <div class="opponent container"></div>
+    <section class="pick-fight-view container">
+      <div class="pokemon-champ"></div>
+      <section class="opponents-holder">
+        <h2>Pick Your Opponent</h2>
+        <div class="opponents-list"></div>
       </section>
     </section>
     <!-- Fight View section -->
-    <!-- PickFIght View section -->
+    <section class="fight-view header">
+      <h4>Fight info text or imaging goes here</h4>
+      <div class="pokemon-champ container"></div>
+      <div class="opponent-view container"></div>
+    </section>
+    <!-- Pokemon Detail View section -->
+    <section class="detail-view container"></section>
+
+    <!-- Error View section -->
   </main>
 
   <!-- CDN resources -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
   <!-- App resources -->
-  <script src="scripts/models/castr.js"></script>
-  <script src="scripts/views/castrViews.js"></script>
-  <script src="scripts/views/errorView.js"></script>
-  <script src="scripts/views/routes.js"></script>
+  <script src="model/mon.js"></script>
+
+  <!-- <script src="views/monView.js"></script>
+  <script src="views/errorView.js"></script> -->
+
+  <script src="views/routes.js"></script>
 </body>
 </html>
