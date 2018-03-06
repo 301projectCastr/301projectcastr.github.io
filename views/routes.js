@@ -7,5 +7,6 @@
 // page('/pick_fight', ctx => ); // pick fight page.
 // page('/fight', ctx => ); // fight page.
 
-// page();
+page('/', () => getMonStats());
+page();
 
