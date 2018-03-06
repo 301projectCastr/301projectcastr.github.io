@@ -13,7 +13,7 @@
 
    <!-- tempalte for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card">
+    <section class="poke-card" data-monId="{{id}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{nic}}</li>
@@ -35,6 +35,13 @@
       <button class="select-mon-button">Choose</button>
     </section>
   </script>
+  <!-- tempalte for the error route -->
+  <script id="err-template" type="text/x-handlebars-template">
+    <section>
+      <h1>Looks like you missed your route!</h1>
+      <p>{{status}}: {{statusText}}</p>
+    </section>
+  </script>
 </head>
 <body>
   <header>
@@ -45,7 +52,7 @@
   </header>
   <main>
     <!-- View for new user, not logged in -->
-    <section class="login-view container">
+    <section class="login-view header">
       <form id="login-form">
         <input type="text" name="username" placeholder="Username" required>
         <input type="text" name="passWord" placeholder="Enter A Password" required>
@@ -53,8 +60,8 @@
       </form>
     </section>
     <!-- loggedin View section -->
-    <section class="pokemon-list header container"></section>
-      <div class="logged-in-view header">
+    <section class="pokemon-list header"></section>
+      <div class="logged-in-view">
         <button class="make-new-mon-button">Catch New Pokemon</button>
         <h2>My Pokemon</h2>
       </div>
@@ -64,36 +71,36 @@
       <h2>Catch New Pokemon</h2>
       <p>Choose options below to catch your pokemon</p>
       <form>
-          <select id="">
-              <option value="">-- Option 1 --</option>
+          <select id="poke-select">
+              <option value="ralts">Ralts</option>
+              <option value="spheal">Spheal</option>
+              <option value="torchic">Torchic</option>
+              <option value="leafeon">Leafeon</option>
+          </select>
+          <!-- <select id="">
+              <option value=""> Option 2 </option>
               <option value="">Value</option>
               <option value="">Value</option>
               <option value="">Value</option>
           </select>
           <select id="">
-              <option value="">-- Option 2 --</option>
+              <option value=""> Option 3 </option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+              <option value="">Value</option>
+          </select> -->
+          <!-- <select id="">
+              <option value="">Option 4</option>
               <option value="">Value</option>
               <option value="">Value</option>
               <option value="">Value</option>
           </select>
           <select id="">
-              <option value="">-- Option 3 --</option>
+              <option value=""> Option 5</option>
               <option value="">Value</option>
               <option value="">Value</option>
               <option value="">Value</option>
-          </select>
-          <select id="">
-              <option value="">-- Option 4 --</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select>
-          <select id="">
-              <option value="">-- Option 5 --</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select>
+          </select> -->
       </form>
     </section>
     <!-- PickFIght View section -->
@@ -105,12 +112,15 @@
       </section>
     </section>
     <!-- Fight View section -->
-    <section class="fight-view container">
-      <div class="pokemon-champ"></div>
-        <h4>Fight info text or imaging goes here</h4>
-      <div class="opponent-view"></div>
-      <button id="fight-button">Fight!</button>
+    <section class="fight-view header">
+      <h4>Fight info text or imaging goes here</h4>
+      <div class="pokemon-champ container"></div>
+      <div class="opponent-view container"></div>
     </section>
+    <!-- Pokemon Detail View section -->
+    <section class="detail-view container"></section>
+
+    <!-- Error View section -->
   </main>
 
   <!-- CDN resources -->
