@@ -15,7 +15,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   }
 
   Mon.prototype.toHtml = function() {
-    console.log('inside toHtml');
     let template = Handlebars.compile($('#poke-card-template').text());
     $('#user-pokemon-list').append(template(this));
   };
@@ -42,7 +41,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
-      .then(console.log('loading array'))
       .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
