@@ -66,7 +66,7 @@
     <!-- loggedin View section -->
     <section class="pokemon-list header"></section>
       <div class="logged-in-view">
-        <button class="make-new-mon-button">Catch New Pokemon</button>
+        <button class="make-new-mon-button"><a href="/mon/new">Catch New Pokemon</a></button>
         <h2>My Pokemon</h2>
       </div>
     </section>
@@ -75,7 +75,7 @@
       <h2>Catch New Pokemon</h2>
       <p>Choose options below to catch your pokemon</p>
       <form>
-          <select id="poke-select">
+          <select id="poke-select" name="pokeSelect">
               <option value="ralts">Ralts</option>
               <option value="spheal">Spheal</option>
               <option value="torchic">Torchic</option>
@@ -105,6 +105,7 @@
               <option value="">Value</option>
               <option value="">Value</option>
           </select> -->
+          <button><a>Throw Ball</a></button>
       </form>
     </section>
     <!-- PickFIght View section -->
@@ -131,13 +132,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
   <!-- App resources -->
   <script src="model/mon.js"></script>
   <script src="views/monView.js"></script>
   <script src="views/errorView.js"></script>
-
   <script src="views/routes.js"></script>
 </body>
 </html>
