@@ -23,6 +23,19 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
 
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
 
+  Mon.catchOne = name =>
+    $.get(`${__POKE_API__}pokemon/${name}/`)
+      .then(results => {
+        let mon_name = results.name;
+        let image_url = results.sprites.front_default;
+        let hp_stat = results.stats[5].base_stat;
+        let atk_stat = results.stats[4].base_stat;
+        let def_stat = results.stats[3].base_stat;
+        let satk_stat = results.stats[2].base_stat;
+        let sdef_stat = results.stats[1].base_stat;
+        let speed_stat = results.stats[0].base_stat;
+      });
+
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon`)
       .then(Mon.loadAll)
@@ -78,7 +91,5 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(() => page('/'))
       .catch(errorCallback);
   module.Mon = Mon;
-  
+
 })(app);
-
-
