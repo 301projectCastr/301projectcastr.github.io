@@ -47,9 +47,11 @@ var app = app || {};
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
-            user_id:  1,//JSON.parse(localStorage.user),
+            user_name:  'user1',//JSON.parse(localStorage.user),
             mon_name: results.name,
             image_url: results.sprites.front_default,
+            type_one: results.types[0].type.name,
+            type_two: results.types[1].type.name ? results.types[1].type.name : '',
             speed_stat: results.stats[0].base_stat,
             sdef_stat: results.stats[1].base_stat,
             satk_stat: results.stats[2].base_stat,
@@ -58,16 +60,17 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView()));
+          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView));
         });
     });
   };
 
-  monView.initDetailView = (obj) => {
+  monView.initDetailView = (ctx) => {
+    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detailView').append(template(obj));
+    $('.detail-view').append(template(ctx));
     $('#nick-name-input').on('submit', function(event) {
       event.preventDefault();
       
