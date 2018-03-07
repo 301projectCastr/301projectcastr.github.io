@@ -23,18 +23,20 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
 
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
 
-  Mon.catchOne = name =>
+  Mon.catchOne = (name, callback) =>
     $.get(`${__POKE_API__}pokemon/${name}/`)
-      .then(results => {
-        let mon_name = results.name;
-        let image_url = results.sprites.front_default;
-        let hp_stat = results.stats[5].base_stat;
-        let atk_stat = results.stats[4].base_stat;
-        let def_stat = results.stats[3].base_stat;
-        let satk_stat = results.stats[2].base_stat;
-        let sdef_stat = results.stats[1].base_stat;
-        let speed_stat = results.stats[0].base_stat;
-      });
+      .then(results => results = {
+        mon_name: results.name,
+        image_url: results.sprites.front_default,
+        hp_stat: results.stats[5].base_stat,
+        atk_stat: results.stats[4].base_stat,
+        def_stat: results.stats[3].base_stat,
+        satk_stat: results.stats[2].base_stat,
+        sdef_stat: results.stats[1].base_stat,
+        speed_stat: results.stats[0].base_stat
+      })
+      .then(callback())
+      .catch(errorCallback);
 
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon`)
