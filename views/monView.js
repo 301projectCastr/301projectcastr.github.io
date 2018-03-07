@@ -6,6 +6,7 @@ var app = app || {};
   const monView = {};
 
   monView.reset = () => {
+    $('#user-pokemon-list').empty();
     $('.container').hide(); // hide all containers
     $('.header').hide(); // hide stuff we don't want emptied as well
   };
@@ -33,8 +34,9 @@ var app = app || {};
   monView.initLoggedInView = () => {
     monView.reset();
     $('.loggedInView').show();
-    app.Mon.fetchAll();
-    // app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()))
+    console.log('showing logged in view');
+    app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    console.log('after html template should be filled');
   };
 
   monView.initNewMon = () => {
@@ -114,7 +116,7 @@ var app = app || {};
   monView.checkLocalStorage = () => {
     if (localStorage.user) {
       console.log('local storage - yes');
-      monView.initLoggedInView();
+      app.Mon.fetchAll(monView.initLoggedInView());
     } else {
       console.log('no local storage');
       monView.initIndexPage();

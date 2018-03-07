@@ -15,8 +15,9 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   }
 
   Mon.prototype.toHtml = function() {
+    console.log('inside toHtml');
     let template = Handlebars.compile($('#poke-card-template').text());
-    return template(this);
+    $('#user-pokemon-list').append(template(this));
   };
 
   Mon.all = [];
@@ -43,7 +44,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(Mon.loadAll)
       .then(console.log('loading array'))
       .then(console.log(Mon.all))
-      .then(app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml())))
+      .then(callback)
       .catch(errorCallback);
 
 
@@ -62,7 +63,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   Mon.create = (obj, callback) => {
     console.log('in create');
     let mon = {
-      user_id: obj.user_name,
+      user_name: obj.user_name,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',
       mon_name: obj.mon_name,
       image_url: obj.image_url,
