@@ -15,7 +15,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   }
 
   Mon.prototype.toHtml = function() {
-    console.log('inside toHtml');
     let template = Handlebars.compile($('#poke-card-template').text());
     $('#user-pokemon-list').append(template(this));
   };
@@ -29,6 +28,8 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(results => results = {
         mon_name: results.name,
         image_url: results.sprites.front_default,
+        type_one: results.types[0].type,
+        type_two: results.types[1] ? results.types[1].type.name : '',
         hp_stat: results.stats[5].base_stat,
         atk_stat: results.stats[4].base_stat,
         def_stat: results.stats[3].base_stat,
@@ -42,7 +43,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
-      .then(console.log('loading array'))
       .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
