@@ -62,10 +62,12 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   Mon.create = (obj, callback) => {
     console.log('in create');
     let mon = {
-      user_id: obj.user_id,
+      user_id: obj.user_name,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',
       mon_name: obj.mon_name,
       image_url: obj.image_url,
+      type_one: obj.type_one,
+      type_two: obj.type_two ? obj.type_two : '',
       wins: obj.wins ? obj.wins : 0,
       losses: obj.losses ? obj.losses : 0,
       levels: obj.levels ? obj.levels : 1,
