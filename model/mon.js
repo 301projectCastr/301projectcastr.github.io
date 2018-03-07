@@ -29,7 +29,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
         mon_name: results.name,
         image_url: results.sprites.front_default,
         type_one: results.types[0].type,
-        type_two: results.types[1].type ? results.types[1].type : '',
+        type_two: results.types[1] ? results.types[1].type.name : '',
         hp_stat: results.stats[5].base_stat,
         atk_stat: results.stats[4].base_stat,
         def_stat: results.stats[3].base_stat,
