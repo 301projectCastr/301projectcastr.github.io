@@ -26,7 +26,7 @@ var app = app || {};
     console.log(localStorage.user);
     $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
       .then(() => page('/'));
-      // .catch(errorCallback);
+    // .catch(errorCallback);
   };
 
 
@@ -42,7 +42,8 @@ var app = app || {};
     monView.reset();
     $('.new-mon-view').show();
     $('#new-mon-form').on('submit', function (event) {
-      let name = event.target.pokeSelect.vakue;
+      event.preventDefault();
+      let name = event.target.pokeSelect.value;
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
@@ -56,7 +57,8 @@ var app = app || {};
             atk_stat: results.stats[4].base_stat,
             hp_stat: results.stats[5].base_stat
           };
-          module.Mon.create(newMon, module.monView.initDetailView);
+          console.log(newMon);
+          module.Mon.create(newMon, module.monView.initDetailView(module.Mon.fetchLast));
         });
     });
   };

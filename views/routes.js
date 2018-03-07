@@ -1,7 +1,7 @@
 'use strict';
 
 page('/', ctx => app.monView.checkLocalStorage()); // main view logged in or not.
-page('/mon/new', ctx => app.monView.initNewMon(ctx));  // create new pokemon.
+page('/mon/new', ctx => app.monView.initNewMon());  // create new pokemon.
 page('/logout', ctx => app.monView.logout());
 // page('/mon/new', ctx => );  // create new pokemon.
 // page('/mon/:mon_id/', ctx => ); // detail view after creating new.
