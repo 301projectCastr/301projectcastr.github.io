@@ -1,0 +1,36 @@
+main {
+  width: 480px;
+  margin: 0 auto 20px;
+  padding: 20px 30px;
+  background: #eee;
+  border: 1px solid #444;
+}
+header img{
+  width: 150px;
+  float: left;
+  margin-right: 20px;
+}
+
+nav {
+  clear: both;
+  padding: 20px 0;
+}
+
+
+@media (min-width: 768px) {
+  main{
+    width: 728px;
+  }
+}
+
+@media (min-width: 900px) {
+  main{
+    width: 870px;
+  }
+}
+
+@media (min-width: 1040px) {
+  main{
+    width: 980px;
+  }
+}
