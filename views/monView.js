@@ -33,8 +33,8 @@ var app = app || {};
   monView.initLoggedInView = () => {
     monView.reset();
     $('.loggedInView').show();
-
-    app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    app.Mon.fetchAll();
+    // app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()))
   };
 
   monView.initNewMon = () => {

@@ -39,10 +39,13 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   Mon.fetchAll = callback =>
-    $.get(`${__API_URL__}/api/v1/mon`)
+    $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
-      .then(callback)
+      .then(console.log('loading array'))
+      .then(console.log(Mon.all))
+      .then(app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml())))
       .catch(errorCallback);
+
 
   Mon.fetchOne = (ctx, callback) =>
     $.get(`${__API_URL__}/api/v1/mon/${ctx.params.mon_id}`)
