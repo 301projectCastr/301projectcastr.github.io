@@ -32,6 +32,13 @@ var app = app || {};
     monView.reset();
     $('.loggedInView').show();
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    $('#detail-mon-button').on('click', function(event) {
+      event.preventDefault();
+      let id = $(this).parent().data('monid');
+      // console.log($(this).parent());
+      // console.log(id);
+      module.Mon.fetchOne(id, monView.initDetailView);
+    });
   };
 
   monView.initNewMon = () => {
@@ -63,7 +70,6 @@ var app = app || {};
   };
 
   monView.initDetailView = (ctx) => {
-    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
