@@ -16,7 +16,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
 
   Mon.prototype.toHtml = function() {
     let template = Handlebars.compile($('#poke-card-template').text());
-    return template(this);
+    $('#user-pokemon-list').append(template(this));
   };
 
   Mon.all = [];
@@ -28,6 +28,8 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(results => results = {
         mon_name: results.name,
         image_url: results.sprites.front_default,
+        type_one: results.types[0].type,
+        type_two: results.types[1] ? results.types[1].type.name : '',
         hp_stat: results.stats[5].base_stat,
         atk_stat: results.stats[4].base_stat,
         def_stat: results.stats[3].base_stat,
@@ -39,10 +41,12 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   Mon.fetchAll = callback =>
-    $.get(`${__API_URL__}/api/v1/mon`)
+    $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
+      .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
+
 
   Mon.fetchOne = (ctx, callback) =>
     $.get(`${__API_URL__}/api/v1/mon/${ctx.params.mon_id}`)
@@ -56,10 +60,10 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(callback);
   };
 
-  Mon.create = (obj, callback) => {
+  Mon.create = (obj, callback, callback2) => {
     console.log('in create');
     let mon = {
-      user_id: obj.user_name,
+      user_name: obj.user_name,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',
       mon_name: obj.mon_name,
       image_url: obj.image_url,
@@ -77,17 +81,17 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
     };
     console.log(mon);
     $.post(`${__API_URL__}/mon`, mon)
-      .then(callback)
+      .then(callback(callback2))
       .catch(errorCallback);
   };
 
-  Mon.update = (mon, monId) =>
+  Mon.update = mon =>
     $.ajax({
-      url: `${__API_URL__}/api/v1/mon/${monId}`,
+      url: `${__API_URL__}/update/`,
       method: 'PUT',
       data: mon
     })
-      .then(() => page(`/mon/${monId}`))
+      .then(() => page(`/`))
       .catch(errorCallback);
 
   Mon.retire = id =>

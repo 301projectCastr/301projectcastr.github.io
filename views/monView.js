@@ -6,6 +6,7 @@ var app = app || {};
   const monView = {};
 
   monView.reset = () => {
+    $('#user-pokemon-list').empty();
     $('.container').hide(); // hide all containers
     $('.header').hide(); // hide stuff we don't want emptied as well
   };
@@ -14,13 +15,11 @@ var app = app || {};
     monView.reset();
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
-      console.log('button submitted');
       event.preventDefault();
       localStorage.setItem('user', JSON.stringify(event.target.username.value));
       monView.newUser();
     });
   };
-
 
   monView.newUser = () => {
     console.log(localStorage.user);
@@ -29,11 +28,9 @@ var app = app || {};
     // .catch(errorCallback);
   };
 
-
   monView.initLoggedInView = () => {
     monView.reset();
     $('.loggedInView').show();
-
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
   };
 
@@ -47,11 +44,11 @@ var app = app || {};
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
-            user_name:  'user1',//JSON.parse(localStorage.user),
+            user_name: JSON.parse(localStorage.user),
             mon_name: results.name,
             image_url: results.sprites.front_default,
             type_one: results.types[0].type.name,
-            type_two: results.types[1].type.name ? results.types[1].type.name : '',
+            type_two: results.types[1] ? results.types[1].type.name : '',
             speed_stat: results.stats[0].base_stat,
             sdef_stat: results.stats[1].base_stat,
             satk_stat: results.stats[2].base_stat,
@@ -60,7 +57,7 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView));
+          module.Mon.create(newMon, module.Mon.fetchLast, module.monView.initDetailView);
         });
     });
   };
@@ -71,21 +68,12 @@ var app = app || {};
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.detail-view').append(template(ctx));
-    $('#nick-name-input').on('submit', function(event) {
+    $('#nick-update-form').off('submit');
+    $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
-      
-
-      app.Mon.update();
-
-      // let mon = {
-      //   mon_nick: event.target.....,
-      //   mon_name: ,
-      //   image_url: ,
-      //   user_id: ,
-      // };
-
-      // module.Mon.create(mon);
-
+      let newMon = ctx;
+      newMon.mon_nick = event.target.nickInput.value;
+      module.Mon.update(newMon);
     });
   };
 
@@ -101,22 +89,12 @@ var app = app || {};
 
   };
 
-  // this method is invoked when the form of select dropdowns is submitted. It will create an api request to gather possible pokemon characters to then be assigned to the user based on their selections.
-  monView.handleRequestNew = event => {
-    event.preventDefault();
-    // api request to get possible pokemon back. Will this be the fetchOne?
-
-    app.Mon.fetchOne(ctx, callback)
-    // run logic on the full results to filter based on the val()s from the dropdowns. Does this happen in the fetchOne method?
-    // once a specific character has been chosen, go to the detail page to choose nick...page('/mon/:mon_id/'));
-  };
-
   monView.checkLocalStorage = () => {
     if (localStorage.user) {
       console.log('local storage - yes');
-      monView.initLoggedInView();
+      app.Mon.fetchAll(monView.initLoggedInView);
     } else {
-      console.log('no local storage');
+      console.log('local storage - no');
       monView.initIndexPage();
     }
   };
