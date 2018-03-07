@@ -51,7 +51,7 @@ var app = app || {};
             mon_name: results.name,
             image_url: results.sprites.front_default,
             type_one: results.types[0].type.name,
-            type_two: results.types[1].type.name ? results.types[1].type.name : '',
+            type_two: results.types[1] ? results.types[1].type.name : '',
             speed_stat: results.stats[0].base_stat,
             sdef_stat: results.stats[1].base_stat,
             satk_stat: results.stats[2].base_stat,
@@ -71,21 +71,11 @@ var app = app || {};
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.detail-view').append(template(ctx));
-    $('#nick-name-input').on('submit', function(event) {
+    $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
-      
-
-      app.Mon.update();
-
-      // let mon = {
-      //   mon_nick: event.target.....,
-      //   mon_name: ,
-      //   image_url: ,
-      //   user_id: ,
-      // };
-
-      // module.Mon.create(mon);
-
+      let newMon = ctx;
+      newMon.mon_nick = event.target.nickInput.value;
+      module.Mon.update(newMon);
     });
   };
 
