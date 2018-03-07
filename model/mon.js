@@ -59,7 +59,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
   Mon.create = (obj, callback) => {
     console.log('in create');
     let mon = {
-      user_id: obj.user_name,
+      user_name: obj.user_name,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',
       mon_name: obj.mon_name,
       image_url: obj.image_url,
@@ -81,13 +81,13 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
   };
 
-  Mon.update = (mon, monId) =>
+  Mon.update = mon =>
     $.ajax({
-      url: `${__API_URL__}/api/v1/mon/${monId}`,
+      url: `${__API_URL__}/update/`,
       method: 'PUT',
       data: mon
     })
-      .then(() => page(`/mon/${monId}`))
+      .then(() => page(`/`))
       .catch(errorCallback);
 
   Mon.retire = id =>
