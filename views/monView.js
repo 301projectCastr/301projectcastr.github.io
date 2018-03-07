@@ -62,7 +62,7 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView));
+          module.Mon.create(newMon, module.Mon.fetchLast, module.monView.initDetailView);
         });
     });
   };

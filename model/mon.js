@@ -60,7 +60,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(callback);
   };
 
-  Mon.create = (obj, callback) => {
+  Mon.create = (obj, callback, callback2) => {
     console.log('in create');
     let mon = {
       user_name: obj.user_name,
@@ -81,7 +81,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
     };
     console.log(mon);
     $.post(`${__API_URL__}/mon`, mon)
-      .then(callback)
+      .then(callback(callback2))
       .catch(errorCallback);
   };
 
