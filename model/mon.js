@@ -47,27 +47,32 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(results => ctx.mon = results[0])
       .then(callback)
       .catch(errorCallback);
+  
+  Mon.fetchLast = callback => {
+    $.get(`${__API_URL__}/fetchLast`)
+      .then(callback);
+  };
 
   Mon.create = (obj, callback) => {
     let mon = {
-      user_id: user_id, 
-      mon_nick: obj.mon_nick ? obj.mon_nick : '', 
-      mon_name: obj.mon_name, 
+      user_id: obj.user_id,
+      mon_nick: obj.mon_nick ? obj.mon_nick : '',
+      mon_name: obj.mon_name,
       image_url: obj.image_url,
-      wins: wins ? obj.wins : 0, 
-      losses: losses ? obj.losses : 0, 
-      levels: levels ? obj.levels : 1, 
-      hp_stat: obj.hp_stat, 
-      atk_stat: obj.atk_stat, 
-      def_stat: obj.def_stat, 
-      satk_stat: obj.satk_stat, 
-      sdef_stat: obj.sdef_stat, 
+      wins: obj.wins ? obj.wins : 0,
+      losses: obj.losses ? obj.losses : 0,
+      levels: obj.levels ? obj.levels : 1,
+      hp_stat: obj.hp_stat,
+      atk_stat: obj.atk_stat,
+      def_stat: obj.def_stat,
+      satk_stat: obj.satk_stat,
+      sdef_stat: obj.sdef_stat,
       speed_stat: obj.speed_stat
-    }
+    };
     $.post(`${__API_URL__}/mon`, mon)
       .then(callback)
       .catch(errorCallback);
-  }
+  };
 
   Mon.update = (mon, monId) =>
     $.ajax({
