@@ -26,7 +26,7 @@ var app = app || {};
     console.log(localStorage.user);
     $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
       .then(() => page('/'));
-      // .catch(errorCallback);
+    // .catch(errorCallback);
   };
 
 
@@ -34,21 +34,24 @@ var app = app || {};
     monView.reset();
     $('.loggedInView').show();
 
-    // create pokemon list.
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
   };
 
   monView.initNewMon = () => {
     monView.reset();
     $('.new-mon-view').show();
+    $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
-      let name = event.target.pokeSelect.vakue;
+      event.preventDefault();
+      let name = event.target.pokeSelect.value;
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
-            user_id: JSON.parse(localStorage.user),
+            user_name:  'user1',//JSON.parse(localStorage.user),
             mon_name: results.name,
             image_url: results.sprites.front_default,
+            type_one: results.types[0].type.name,
+            type_two: results.types[1].type.name ? results.types[1].type.name : '',
             speed_stat: results.stats[0].base_stat,
             sdef_stat: results.stats[1].base_stat,
             satk_stat: results.stats[2].base_stat,
@@ -56,16 +59,18 @@ var app = app || {};
             atk_stat: results.stats[4].base_stat,
             hp_stat: results.stats[5].base_stat
           };
-          module.Mon.create(newMon, module.monView.initDetailView);
+          console.log(newMon);
+          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView));
         });
     });
   };
 
-  monView.initDetailView = (obj) => {
+  monView.initDetailView = (ctx) => {
+    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detailView').append(template(obj));
+    $('.detail-view').append(template(ctx));
     $('#nick-name-input').on('submit', function(event) {
       event.preventDefault();
       

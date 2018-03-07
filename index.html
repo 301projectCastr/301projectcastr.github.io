@@ -14,24 +14,24 @@
 
    <!-- template for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card" data-monId="{{id}}">
+    <section class="poke-card" data-monId="{{user_name}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
-        <li>Name: {{nic}}</li>
-        <li>Species: {{name}}</li>
+        <li>Name: {{mon_nick}}</li>
+        <li>Species: {{mon_name}}</li>
         <li>Wins: {{wins}}</li>
         <li>Loses: {{loses}}</li>
         <li>Levels: {{levels}}</li>
       </ul>
       <ul class="poke-card-stats">
-          <li>Type 1: {{type1}}</li>
-          <li>Type 2: {{type2}}</li>
-          <li>HP: {{hp}}</li>
-          <li>Attack: {{atk}}</li>
-          <li>Defense: {{def}}</li>
-          <li>Special Attack: {{sAtk}}</li>
-          <li>Special Defense: {{sDef}}</li>
-          <li>Speed: {{speed}}</li>
+          <li>Type 1: {{type_one}}</li>
+          <li>Type 2: {{type_two}}</li>
+          <li>HP: {{hp_stat}}</li>
+          <li>Attack: {{atk_stat}}</li>
+          <li>Defense: {{def_stat}}</li>
+          <li>Special Attack: {{satk_stat}}</li>
+          <li>Special Defense: {{sdef_stat}}</li>
+          <li>Speed: {{speed_stat}}</li>
       </ul>
       <button class="select-mon-button">Choose</button>
     </section>
@@ -75,7 +75,7 @@
     <section class="new-mon-view header">
       <h2>Catch New Pokemon</h2>
       <p>Choose options below to catch your pokemon</p>
-      <form>
+      <form id="new-mon-form">
           <select id="poke-select" name="pokeSelect">
               <option value="ralts">Ralts</option>
               <option value="spheal">Spheal</option>
@@ -106,7 +106,7 @@
               <option value="">Value</option>
               <option value="">Value</option>
           </select> -->
-          <button><a>Throw Ball</a></button>
+          <button>Throw Ball</button>
       </form>
     </section>
     <!-- PickFIght View section -->
