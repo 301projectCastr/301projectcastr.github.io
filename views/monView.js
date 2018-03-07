@@ -107,10 +107,10 @@ var app = app || {};
   monView.checkLocalStorage = () => {
     if (localStorage.user) {
       console.log('local storage - yes');
-      app.Mon.fetchAll(monView.initLoggedInView());
+      app.Mon.fetchAll(monView.initLoggedInView);
     } else {
       console.log('no local storage');
-      monView.initIndexPage();
+      module.monView.initIndexPage();
     }
   };
 
