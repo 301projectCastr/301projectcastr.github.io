@@ -47,11 +47,6 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(results => ctx.mon = results[0])
       .then(callback)
       .catch(errorCallback);
-  
-  Mon.catchOne = name => {
-    $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
-    .then(results => )
-  };
 
   Mon.create = (obj, callback) => {
     let mon = {
