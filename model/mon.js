@@ -51,11 +51,13 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .catch(errorCallback);
   
   Mon.fetchLast = callback => {
+    console.log('in fetchLast');
     $.get(`${__API_URL__}/fetchLast`)
       .then(callback);
   };
 
   Mon.create = (obj, callback) => {
+    console.log('in create');
     let mon = {
       user_id: obj.user_id,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',
@@ -71,6 +73,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       sdef_stat: obj.sdef_stat,
       speed_stat: obj.speed_stat
     };
+    console.log(mon);
     $.post(`${__API_URL__}/mon`, mon)
       .then(callback)
       .catch(errorCallback);

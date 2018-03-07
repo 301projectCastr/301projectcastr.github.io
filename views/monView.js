@@ -34,13 +34,13 @@ var app = app || {};
     monView.reset();
     $('.loggedInView').show();
 
-    // create pokemon list.
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
   };
 
   monView.initNewMon = () => {
     monView.reset();
     $('.new-mon-view').show();
+    $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
       let name = event.target.pokeSelect.value;
@@ -58,7 +58,7 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.monView.initDetailView(module.Mon.fetchLast));
+          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView()));
         });
     });
   };
