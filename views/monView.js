@@ -44,7 +44,7 @@ var app = app || {};
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
-            user_name:  'user1',//JSON.parse(localStorage.user),
+            user_name: JSON.parse(localStorage.user),
             mon_name: results.name,
             image_url: results.sprites.front_default,
             type_one: results.types[0].type.name,
@@ -57,7 +57,7 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView));
+          module.Mon.create(newMon, module.Mon.fetchLast, module.monView.initDetailView);
         });
     });
   };
@@ -68,6 +68,7 @@ var app = app || {};
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.detail-view').append(template(ctx));
+    $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
       let newMon = ctx;
@@ -91,7 +92,7 @@ var app = app || {};
   monView.checkLocalStorage = () => {
     if (localStorage.user) {
       console.log('local storage - yes');
-      app.Mon.fetchAll(monView.initLoggedInView());
+      app.Mon.fetchAll(monView.initLoggedInView);
     } else {
       console.log('local storage - no');
       monView.initIndexPage();
