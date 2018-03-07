@@ -70,7 +70,7 @@ var app = app || {};
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detailView').append(template(ctx));
+    $('.detail-view').append(template(ctx));
     $('#nick-name-input').on('submit', function(event) {
       event.preventDefault();
       
