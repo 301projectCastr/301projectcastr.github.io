@@ -34,20 +34,20 @@ var app = app || {};
     monView.reset();
     $('.loggedInView').show();
 
-    // create pokemon list.
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
   };
 
   monView.initNewMon = () => {
     monView.reset();
     $('.new-mon-view').show();
+    $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
       let name = event.target.pokeSelect.value;
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
-            user_id: JSON.parse(localStorage.user),
+            user_id:  1,//JSON.parse(localStorage.user),
             mon_name: results.name,
             image_url: results.sprites.front_default,
             speed_stat: results.stats[0].base_stat,
@@ -58,7 +58,7 @@ var app = app || {};
             hp_stat: results.stats[5].base_stat
           };
           console.log(newMon);
-          module.Mon.create(newMon, module.monView.initDetailView(module.Mon.fetchLast));
+          module.Mon.create(newMon, module.Mon.fetchLast(module.monView.initDetailView()));
         });
     });
   };
