@@ -34,9 +34,11 @@
           <li>Special Defense: {{sdef_stat}}</li>
           <li>Speed: {{speed_stat}}</li>
       </ul>
-      <button class="select-mon-button" data-monid="{{mon_id}}" data-name="{{mon_name}}">Choose for Battle</button>
-      <button class="view-mon-button" data-monid="{{mon_id}}">Change Name</button>
-      <button class="delete-mon-button" data-monid="{{mon_id}}">Release</button>
+      <div class="buttons">
+      <button class="card-button select-mon-button" data-monid="{{mon_id}}" data-name="{{mon_name}}">Choose for Battle</button>
+      <button class="card-button view-mon-button" data-monid="{{mon_id}}">Change Name</button>
+      <button class="card-button  delete-mon-button" data-monid="{{mon_id}}">Release</button>
+      </div>
     </section>
   </script>
   <!-- template for the error route -->
@@ -146,18 +148,27 @@
     </section>
     <section class="about-us container">
       <h1>The Devs</h1>
+      <section class="poke-card ramon">
       <h2>Ramon Mendoza</h2>
         <img src="img/Ramon.png" alt="ramon">
         <p>Cars, computers and video games have always been a part my life. Coding has only been my interest for a very small fraction of that time, but I enjoy it as much as the rest. As a software developer my goal is to work in my four wonders of the world.</p>
+      </section>
+      <section class="poke-card jose">
       <h2>Jose Flores</h2>
         <img src="img/jose.JPG" alt="jose">
         <p>Born and raised in Texas, Jose moved here for his first duty station while serving in the Army. After ten years of service, Jose continued to work with veterans by serving with local Veteran Service Organizations. Now Jose is a student at Code Fellows to become a full stack JavaScript Web Developer.</p>
+      </section>
+      <section class="poke-card kevin">
       <h2>Kevin Farrow</h2>
         <img src="img/kevin.jpg" alt="kevin">
         <p>An experienced leader and support specialist with a technology background and a passion for coordination, efficiency, and leveraging technology to create better outcomes.Passionate about storytelling and interactive media as the next great storytelling medium.</p>
+      </section>
+      <section class="poke-card jennifer">
       <h2>Jennifer Piper</h2>
         <img src="img/JenniferPiper.jpg" alt="jennifer">
         <p>I’m a web developer with full-stack skills and a passion for front-end excellence. I love how good code and good design fit together to make good user experiences.</p>
+      </section>
+      <section class="poke-card carl">
       <h2>Carl Olson</h2>
         <img src="img/Carl.jpg" alt="carl">
         <p>I'm a software developer with a passion for coding and solving problems. I love playing music, sports, cooking, and hanging with my 2 year old son.</p>
