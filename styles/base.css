@@ -16,10 +16,13 @@ img {
 
 h1 {
   font-size: 40px;
+  text-shadow: 1px 1px #000;
 }
 h2 {
   font-size: 28px;
+  text-shadow: 1px 1px #000;
 }
 h3 {
   font-size: 22px;
 }
+
