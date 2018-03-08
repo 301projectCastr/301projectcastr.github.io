@@ -1,3 +1,120 @@
 section {
   padding: 0 20px;
 }
+
+header {
+  color: white;
+}
+
+header a {
+  color: white;
+}
+
+h2, label, p {
+  color: white;
+  margin: 20px;
+}
+
+label {
+  font-size: 24px;
+}
+
+h2 {
+  color: #E8EF93;
+  font-size: 36px;
+}
+
+button {
+  border-radius: 10px;
+  background-color: #4cb0bd;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #E8EF93;
+  /* border: 2px solid white; */
+}
+
+input {
+  background-color: rgb(226, 226, 226);
+  margin-right: 20px;
+}
+
+.poke-card {
+  padding: 10px 10px;
+  border: 2px solid #BC3F1B;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgb(175, 96, 74);
+  overflow: auto;
+  background-color: #E8EF93;
+  margin: 15px auto;
+}
+.poke-card img, .poke-card ul {
+  width: 33%;
+  text-align: left;
+  float: left;
+}
+
+.poke-card img {
+  height: auto;
+  width: 33%;
+}
+
+.poke-card-fight-info {
+  font-size: 24px;
+}
+
+.select-mon-button {
+  display: block;
+}
+
+.new-mon-view * {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logged-in-view {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.make-new-mon-button {
+  padding: 15px 25px;
+  margin: 15px;
+}
+button {
+  border-radius: 10px;
+  background-color: #4cb0bd;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: #E8EF93;
+  /* border: 2px solid white; */
+}
+
+input {
+  background-color: rgb(226, 226, 226);
+  margin-right: 20px;
+}
+
+.detail-view {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#nick-update-form * {
+  display: block;
+  text-align: center;
+  margin: 10px auto;
+}
+
+#login-form * {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+  height: 40px;
+  text-align: center;
+}
