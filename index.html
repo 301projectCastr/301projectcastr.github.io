@@ -14,7 +14,7 @@
 
    <!-- template for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card" data-monId="{{user_name}}">
+    <section class="poke-card" data-monid="{{mon_id}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{mon_nick}}</li>
@@ -33,7 +33,9 @@
           <li>Special Defense: {{sdef_stat}}</li>
           <li>Speed: {{speed_stat}}</li>
       </ul>
-      <button class="select-mon-button">Choose</button>
+      <button class="select-mon-button" data-monid="{{mon_id}}">Choose for Battle</button>
+      <button class="view-mon-button" data-monid="{{mon_id}}">Change Name</button>
+      <button class="delete-mon-button" data-monid="{{mon_id}}">Release</button>
     </section>
   </script>
   <!-- template for the error route -->
@@ -47,27 +49,27 @@
 <body>
   <main>
       <header>
-          <img src="img/Chinpokomon1.png" alt="logo">
+          <img src="img/transparent_back.png" alt="logo">
           <h1>Pokemon Fight Club</h1>
           <nav>
             <ul>
               <li> <a href="/">Home</a></li>
-              <li> <a href="/logout">Logout</a></li>
+              <li id="logout-button"> <a href="/logout">Logout</a></li>
             </ul>
-          </nav>
+          </nav> 
           <!-- <h2>{{userName}}</h2> -->
         </header>
     <!-- View for new user, not logged in -->
     <section class="login-view header">
       <form id="login-form">
         <input id="username-input" type="text" name="username" placeholder="Username" required>
-        <button type="submit">Prepare to Battle!</button>
+        <button type="submit">Login</button>
       </form>
     </section>
     <!-- loggedin View section -->
-    <section class="pokemon-list header"></section>
+    <section class="pokemon-list header">
       <div class="logged-in-view">
-        <button class="make-new-mon-button"><a href="/mon/new">Catch New Pokemon</a></button>
+        <a href="/mon/new"><button class="make-new-mon-button">Catch New Pokemon</button></a>
         <h2>My Pokemon</h2>
         <section id="user-pokemon-list"></section>
       </div>
@@ -121,16 +123,20 @@
     <!-- Fight View section -->
     <section class="fight-view header">
       <h4>Fight info text or imaging goes here</h4>
-      <div class="pokemon-champ container"></div>
-      <div class="opponent-view container"></div>
+      <section class="arena">
+        <div class="pokemon-challenger container"></div>
+        <div id="fight-status"></div>
+        <div class="opponent-view container"></div>
+      </section>
     </section>
     <!-- Pokemon Detail View section -->
     <section class="detail-view container">
         <form id="nick-update-form">
           <label>Give them a nick name!</label>
-          <input type="text" name="nickInput" required>
+          <input id="nick-input" type="text" name="nickInput" required>
           <button>Submit</button>
         </form>
+        <section id="detail-view-pokemon"></section>
     </section>
     
 

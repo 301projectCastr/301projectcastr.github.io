@@ -1,8 +1,9 @@
 main {
-  width: 480px;
+  width: 100%;
+  min-height: 100vh;
   margin: 0 auto 20px;
   padding: 20px 30px;
-  background: #eee;
+  /* background: #3B4CCA; */
   border: 1px solid #444;
 }
 header img{

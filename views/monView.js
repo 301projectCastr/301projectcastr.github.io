@@ -6,36 +6,55 @@ var app = app || {};
   const monView = {};
 
   monView.reset = () => {
-    $('#user-pokemon-list').empty();
+    $('#user-pokemon-list').empty(); // Empty the pokemon list to prevent double appends.
     $('.container').hide(); // hide all containers
     $('.header').hide(); // hide stuff we don't want emptied as well
   };
 
   monView.initIndexPage = () => {
     monView.reset();
+    $('#logout-button').hide();
+    $('.logged-in-view').hide();
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
-      event.preventDefault();
-      localStorage.setItem('user', JSON.stringify(event.target.username.value));
-      monView.newUser();
+      localStorage.setItem('user', JSON.stringify((event.target.username.value).toLowerCase()));
+      monView.newUser(monView.checkLocalStorage);
     });
   };
 
-  monView.newUser = () => {
+  monView.newUser = (callback) => {
     console.log(localStorage.user);
     $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
-      .then(() => page('/'));
+      .then(callback);
     // .catch(errorCallback);
   };
 
   monView.initLoggedInView = () => {
     monView.reset();
-    $('.loggedInView').show();
+    $('#logout-button').show();
+    $('#user-pokemon-list').empty();
+    $('.make-new-mon-button').show();
+    $('.pokemon-list').show();
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    $('.select-mon-button').off('click'); // Remove any listeners on the object
+    $('.select-mon-button').on('click', function (event) { // add the listener
+      event.preventDefault();
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+    });
+    $('.view-mon-button').on('click', function (event) {
+      event.preventDefault();
+      module.monView.initDetailView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+    });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
+    });
   };
 
   monView.initNewMon = () => {
     monView.reset();
+    $('.make-new-mon-button').hide();
+    $('.pokemon-list').hide();
     $('.new-mon-view').show();
     $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
@@ -63,11 +82,17 @@ var app = app || {};
   };
 
   monView.initDetailView = (ctx) => {
-    console.log(ctx);
     monView.reset();
+    $('#detail-view-pokemon').empty();
+    $('#nick-input').val('');
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detail-view').append(template(ctx));
+    $('#detail-view-pokemon').append(template(ctx));
+    $('.view-mon-button').hide();
+    $('.select-mon-button').on('click', function (event) { // add the listener
+      event.preventDefault();
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+    });
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
@@ -75,18 +100,43 @@ var app = app || {};
       newMon.mon_nick = event.target.nickInput.value;
       module.Mon.update(newMon);
     });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
+    });
   };
 
-  monView.initPickFightView = () => {
+  monView.initPickFightView = monObj => {
     monView.reset();
     $('.pick-fight-view').show();
-
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.pokemon-champ').append(template(monObj));
+    $('.pokemon-champ .select-mon-button').hide();
+    $('.view-mon-button').hide();
+    $('.delete-mon-button').hide();
+    module.Mon.catchOne('pikachu', module.monView.populateOpp);
+    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
+    $('.delete-mon-button').hide(); // Dosen't work
+    module.Mon.catchOne('axew', module.monView.populateOpp);
+    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
+    $('.delete-mon-button').hide();
+    module.Mon.catchOne('mew', module.monView.populateOpp);
+    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
+    $('.delete-mon-button').hide();
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function(event) {
+      event.preventDefault();
+      monView.initFightView(monObj, monView.getMonById($(this).data('monid')));
+    });
   };
 
-  monView.initFightView = () => {
+  monView.initFightView = (champ, opponent) => {
     monView.reset();
     $('.fight-view').show();
-
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.pokemon-challenger').append(template(champ));
+    template = Handlebars.compile($('#poke-card-template').text());
+    $('.opponent-view').append(template(opponent));
   };
 
   monView.checkLocalStorage = () => {
@@ -102,6 +152,19 @@ var app = app || {};
   monView.logout = () => {
     localStorage.clear();
     window.location = '../';
+  };
+
+  monView.populateOpp = monObj => {
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.opponents-list').append(template(monObj));
+  };
+  //Helper function to get a mon object from the mon id.
+  monView.getMonById = mon_id => {
+    let monObj;
+    for(let i in module.Mon.all) {
+      if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
+    return monObj;
   };
 
   module.monView = monView;

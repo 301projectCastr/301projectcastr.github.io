@@ -1,9 +1,10 @@
 'use strict';
 
 var app = app || {};
-// var __API_URL__ = 'http://localhost:3000';
-var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
-var __POKE_API__= 'http://pokeapi.co/api/v2/';
+var __API_URL__ = 'http://localhost:3000';
+// var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
+var __POKE_API__= 'https://pokeapi.co/api/v2/';
+
 
 (function(module) {
   function errorCallback(err) {
@@ -38,20 +39,13 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
         sdef_stat: results.stats[1].base_stat,
         speed_stat: results.stats[0].base_stat
       })
-      .then(callback())
+      .then(callback)
       .catch(errorCallback);
 
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
-      .then(console.log(Mon.all))
-      .then(callback)
-      .catch(errorCallback);
-
-
-  Mon.fetchOne = (ctx, callback) =>
-    $.get(`${__API_URL__}/api/v1/mon/${ctx.params.mon_id}`)
-      .then(results => ctx.mon = results[0])
+      // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
   
@@ -95,13 +89,14 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
       .then(() => page(`/`))
       .catch(errorCallback);
 
-  Mon.retire = id =>
+  Mon.retire = monid =>
     $.ajax({
-      url: `${__API_URL__}/api/v1/mon/${id}`,
-      method: 'DELETE',
+      url: `${__API_URL__}/api/v1/mon/delete/${monid}`,
+      method: 'DELETE'
     })
       .then(() => page('/'))
       .catch(errorCallback);
+
   module.Mon = Mon;
 
 })(app);
