@@ -24,15 +24,15 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
   Mon.all = [];
   Mon.opponants = [];
-
+  
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
-
+  
   Mon.catchOne = (name, callback) =>
     $.get(`${__POKE_API__}pokemon/${name}/`)
       .then(results => results = {
         mon_name: results.name,
         image_url: results.sprites.front_default,
-        type_one: results.types[0].type,
+        type_one: results.types[0].type.name,
         type_two: results.types[1] ? results.types[1].type.name : '',
         hp_stat: results.stats[5].base_stat,
         atk_stat: results.stats[4].base_stat,
