@@ -67,7 +67,7 @@
       </form>
     </section>
     <!-- loggedin View section -->
-    <section class="pokemon-list header"></section>
+    <section class="pokemon-list header">
       <div class="logged-in-view">
         <button class="make-new-mon-button"><a href="/mon/new">Catch New Pokemon</a></button>
         <h2>My Pokemon</h2>
@@ -123,8 +123,11 @@
     <!-- Fight View section -->
     <section class="fight-view header">
       <h4>Fight info text or imaging goes here</h4>
-      <div class="pokemon-champ container"></div>
-      <div class="opponent-view container"></div>
+      <section class="arena">
+        <div class="pokemon-challenger container"></div>
+        <div id="fight-status"></div>
+        <div class="opponent-view container"></div>
+      </section>
     </section>
     <!-- Pokemon Detail View section -->
     <section class="detail-view container">
