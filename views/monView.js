@@ -108,14 +108,16 @@ var app = app || {};
 
   monView.initPickFightView = monObj => {
     module.Mon.opponants = [];
+    // 949
     monView.reset();
+    $('.opponents-list').empty();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
     $('.pokemon-champ .select-mon-button').hide();
-    module.Mon.catchOne('pikachu', module.monView.populateOpp);
-    module.Mon.catchOne('axew', module.monView.populateOpp);
-    module.Mon.catchOne('mew', module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
   };
 
   monView.initFightView = (champ, opponentName) => {
@@ -130,7 +132,7 @@ var app = app || {};
     $('.opponent-view').append(template(opponent));
     $('#fight-button').off('click');
     $('#fight-button').on('click', function () {
-      if(champ.hp_stat > opponent.hp_stat) {
+      if(module.Mon.fight(champ, opponent) === champ) {
         $('#fight-results').text(`${champ.mon_nick} is the winner!`);
         champ.wins ++;
       } else {
