@@ -17,7 +17,7 @@ var app = app || {};
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
       event.preventDefault();
-      localStorage.setItem('user', JSON.stringify(event.target.username.value));
+      localStorage.setItem('user', JSON.stringify((event.target.username.value).toLowerCase()));
       monView.newUser(monView.checkLocalStorage);
     });
   };
