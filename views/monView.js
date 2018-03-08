@@ -39,6 +39,10 @@ var app = app || {};
       event.preventDefault();
       module.monView.initPickFightView($(this).data('monid'));
     });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
+    });
   };
 
   monView.initNewMon = () => {
@@ -72,7 +76,6 @@ var app = app || {};
   };
 
   monView.initDetailView = (ctx) => {
-    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
