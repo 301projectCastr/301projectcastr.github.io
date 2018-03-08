@@ -3,8 +3,6 @@ main {
   min-height: 100vh;
   margin: 0 auto 20px;
   padding: 20px 30px;
-  /* background: #3B4CCA; */
-  border: 1px solid #444;
 }
 header img{
   width: 150px;
@@ -19,12 +17,18 @@ nav {
 
 
 @media (min-width: 768px) {
+  body {
+    background-size: 150%;
+  }
   main{
     width: 728px;
   }
 }
 
 @media (min-width: 900px) {
+  body {
+    background-size: 100%;
+  }
   main{
     width: 870px;
   }
