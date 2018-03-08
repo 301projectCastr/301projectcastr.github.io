@@ -37,6 +37,10 @@ var app = app || {};
       event.preventDefault();
       module.monView.initPickFightView($(this).data('monid'));
     });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
+    });
   };
 
   monView.initNewMon = () => {

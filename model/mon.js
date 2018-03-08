@@ -97,11 +97,10 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       .then(() => page(`/`))
       .catch(errorCallback);
 
-  Mon.retire = mon =>
+  Mon.retire = monid => 
     $.ajax({
-      url: `${__API_URL__}/delete/`,
-      method: 'DELETE',
-      data: mon
+      url: `${__API_URL__}/api/v1/mon/delete/${monid}`,
+      method: 'DELETE'
     })
       .then(() => page('/'))
       .catch(errorCallback);
