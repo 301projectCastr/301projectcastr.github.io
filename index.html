@@ -14,7 +14,7 @@
 
    <!-- template for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card" data-monId="{{mon_id}}">
+    <section class="poke-card" data-monid="{{mon_id}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{mon_nick}}</li>
@@ -135,6 +135,7 @@
           <label>Give them a nick name!</label>
           <input type="text" name="nickInput" required>
           <button>Submit</button>
+          <button id="retire-button">Retire</button>
         </form>
     </section>
     

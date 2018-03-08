@@ -45,16 +45,19 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
   Mon.fetchAll = callback =>
     $.get(`${__API_URL__}/api/v1/mon/${JSON.parse(localStorage.user)}`)
       .then(Mon.loadAll)
-      .then(console.log(Mon.all))
+      // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
 
 
-  Mon.fetchOne = (ctx, callback) =>
-    $.get(`${__API_URL__}/api/v1/mon/${ctx.params.mon_id}`)
-      .then(results => ctx.mon = results[0])
+  Mon.fetchOne = (ctx, callback) =>{
+    console.log(ctx);
+    console.log(`${__API_URL__}/api/v1/mon/${ctx}`);
+    $.get(`${__API_URL__}/api/v1/mon/${ctx}`)
+      // .then(results => ctx = results[0])
       .then(callback)
       .catch(errorCallback);
+  };
   
   Mon.fetchLast = callback => {
     console.log('in fetchLast');
@@ -96,13 +99,14 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       .then(() => page(`/`))
       .catch(errorCallback);
 
-  Mon.retire = id =>
+  Mon.retire = monid => 
     $.ajax({
-      url: `${__API_URL__}/api/v1/mon/${id}`,
-      method: 'DELETE',
+      url: `${__API_URL__}/api/v1/mon/delete/${monid}`,
+      method: 'DELETE'
     })
       .then(() => page('/'))
       .catch(errorCallback);
+
   module.Mon = Mon;
 
 })(app);
