@@ -2,7 +2,7 @@
 
 var app = app || {};
 var __API_URL__ = 'http://localhost:3000';
-var __POKE_API__= 'http://pokeapi.co/api/v2/';
+var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
 (function(module) {
   function errorCallback(err) {
@@ -37,7 +37,7 @@ var __POKE_API__= 'http://pokeapi.co/api/v2/';
         sdef_stat: results.stats[1].base_stat,
         speed_stat: results.stats[0].base_stat
       })
-      .then(callback())
+      .then(callback)
       .catch(errorCallback);
 
   Mon.fetchAll = callback =>
