@@ -68,7 +68,6 @@ var app = app || {};
   };
 
   monView.initDetailView = (ctx) => {
-    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
