@@ -83,15 +83,21 @@ var app = app || {};
 
   monView.initDetailView = (ctx) => {
     monView.reset();
+    $('#detail-view-pokemon').empty();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detail-view').append(template(ctx));
+    $('#detail-view-pokemon').append(template(ctx));
+    $('.select-mon-button').hide();
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
       let newMon = ctx;
       newMon.mon_nick = event.target.nickInput.value;
       module.Mon.update(newMon);
+    });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
     });
   };
 

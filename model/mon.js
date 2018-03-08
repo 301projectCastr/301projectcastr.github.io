@@ -48,16 +48,6 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
-
-
-  Mon.fetchOne = (ctx, callback) =>{
-    console.log(ctx);
-    console.log(`${__API_URL__}/api/v1/mon/${ctx}`);
-    $.get(`${__API_URL__}/api/v1/mon/${ctx}`)
-      // .then(results => ctx = results[0])
-      .then(callback)
-      .catch(errorCallback);
-  };
   
   Mon.fetchLast = callback => {
     console.log('in fetchLast');
@@ -99,7 +89,7 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       .then(() => page(`/`))
       .catch(errorCallback);
 
-  Mon.retire = monid => 
+  Mon.retire = monid =>
     $.ajax({
       url: `${__API_URL__}/api/v1/mon/delete/${monid}`,
       method: 'DELETE'
