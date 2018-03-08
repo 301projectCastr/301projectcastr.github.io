@@ -131,8 +131,7 @@ var app = app || {};
     $('.opponent-view').append(template(opponent));
     $('#fight-button').off('click');
     $('#fight-button').on('click', function () {
-      // if(champ.hp_stat > opponent.hp_stat)
-      if(module.Mon.fight === champ) {
+      if(module.Mon.fight(champ, opponent) === champ) {
         $('#fight-results').text(`${champ.mon_nick} is the winner!`);
         champ.wins ++;
       } else {
