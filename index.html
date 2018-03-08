@@ -69,7 +69,7 @@
     <!-- loggedin View section -->
     <section class="pokemon-list header">
       <div class="logged-in-view">
-        <button class="make-new-mon-button"><a href="/mon/new">Catch New Pokemon</a></button>
+        <a href="/mon/new"><button class="make-new-mon-button">Catch New Pokemon</button></a>
         <h2>My Pokemon</h2>
         <section id="user-pokemon-list"></section>
       </div>
@@ -133,9 +133,8 @@
     <section class="detail-view container">
         <form id="nick-update-form">
           <label>Give them a nick name!</label>
-          <input type="text" name="nickInput" required>
+          <input id="nick-input" type="text" name="nickInput" required>
           <button>Submit</button>
-          <button id="retire-button">Retire</button>
         </form>
         <section id="detail-view-pokemon"></section>
     </section>
