@@ -118,14 +118,31 @@ var app = app || {};
     module.Mon.catchOne('mew', module.monView.populateOpp);
   };
 
-  monView.initFightView = (champ, opponent) => {
-    console.log(opponent);
-    console.log(champ);
+  monView.initFightView = (champ, opponentName) => {
+    let opponent = module.monView.getMonByName(opponentName);
     monView.reset();
+    console.log(champ);
+    console.log(opponent);
+    $('#fight-results').empty();
     $('.fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.pokemon-challenger').append(template(champ));
+    $('.pokemon-challenger ').append(template(champ));
     $('.opponent-view').append(template(opponent));
+    $('#fight-button').off('click');
+    $('#fight-button').on('click', function () {
+      if(champ.hp_stat > opponent.hp_stat) {
+        $('#fight-results').text(`${champ.mon_nick} is the winner!`);
+        champ.wins ++;
+      } else {
+        $('#fight-results').text(`${opponent.mon_name} is the winner!`);
+        champ.losses ++;
+        console.log(champ);
+      }
+    });
+    $('#home-button').off('click');
+    $('#home-button').on('click', function () {
+      module.Mon.update(champ);
+    });
   };
 
   monView.checkLocalStorage = () => {
@@ -160,6 +177,14 @@ var app = app || {};
     let monObj;
     for(let i in module.Mon.all) {
       if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
+    return monObj;
+  };
+
+  monView.getMonByName = mon_name => {
+    let monObj;
+    for(let i in module.Mon.opponants) {
+      if(module.Mon.opponants[i].mon_name === mon_name) monObj = module.Mon.opponants[i];
     }
     return monObj;
   };

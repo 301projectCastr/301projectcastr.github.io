@@ -21,7 +21,7 @@
         <li>Name: {{mon_nick}}</li>
         <li>Species: {{mon_name}}</li>
         <li>Wins: {{wins}}</li>
-        <li>Loses: {{loses}}</li>
+        <li>losses: {{losses}}</li>
         <li>Levels: {{levels}}</li>
       </ul>
       <ul class="poke-card-stats">
@@ -125,9 +125,13 @@
     <section class="fight-view header">
       <h4>Fight info text or imaging goes here</h4>
       <section class="arena">
-        <div class="pokemon-challenger container"></div>
-        <div id="fight-status"></div>
-        <div class="opponent-view container"></div>
+        <div class="pokemon-challenger"></div>
+        <div id="fight-status">
+          <button id="fight-button">Fight</button>
+          <p id="fight-results"></p>
+          <button id="home-button">Return Home</button>
+        </div>
+        <div class="opponent-view"></div>
       </section>
     </section>
     <!-- Pokemon Detail View section -->
