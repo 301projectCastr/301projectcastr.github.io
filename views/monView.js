@@ -107,7 +107,11 @@ var app = app || {};
     });
   };
 
-  monView.initFightView = (monobj, mon_id) => {
+  monView.initFightView = (champ, mon_id) => {
+    let monObj;
+    for(let i in module.Mon.all) {
+      if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
     monView.reset();
     $('.fight-view').show();
     
