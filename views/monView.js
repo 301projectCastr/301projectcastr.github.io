@@ -17,7 +17,7 @@ var app = app || {};
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
       event.preventDefault();
-      localStorage.setItem('user', JSON.stringify(event.target.username.value));
+      localStorage.setItem('user', JSON.stringify((event.target.username.value).toLowerCase()));
       monView.newUser(monView.checkLocalStorage);
     });
   };
@@ -38,6 +38,10 @@ var app = app || {};
     $('.select-mon-button').on('click', function (event) {
       event.preventDefault();
       module.monView.initPickFightView($(this).data('monid'));
+    });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
     });
   };
 
@@ -72,7 +76,6 @@ var app = app || {};
   };
 
   monView.initDetailView = (ctx) => {
-    console.log(ctx);
     monView.reset();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
