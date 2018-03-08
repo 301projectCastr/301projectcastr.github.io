@@ -102,8 +102,12 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
   Mon.fight = (champ, opponant) => {
     let statList = ['hp_stat', 'atk_stat', 'def_stat', 'satk_stat', 'sdef_stat', 'speed_stat'];
     let randStat = Math.floor(Math.random() * Math.floor(statList.length));
-    
-  } 
+    let champAtk = champ.statList[randStat] + Math.floor(Math.random() * Math.floor(champ.atk_stat));
+    let oppAtk = opponant.statList[randStat] + Math.floor(Math.random() * Math.floor(opponant.atk_stat));
+    console.log(`c: ${champAtk} o: ${oppAtk}`);
+    if (champAtk >= oppAtk) return champ;
+    else return opponant;
+  };
 
   module.Mon = Mon;
 
