@@ -81,9 +81,11 @@ var app = app || {};
 
   monView.initDetailView = (ctx) => {
     monView.reset();
+    $('#detail-view-pokemon').empty();
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.detail-view').append(template(ctx));
+    $('#detail-view-pokemon').append(template(ctx));
+    $('.select-mon-button').hide();
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
