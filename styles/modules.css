@@ -1,9 +1,6 @@
 section {
-  padding: 0 20px;
-}
-
-header {
-  color: white;
+  /* padding: 0 20px; */
+  /* border: thin solid white; */
 }
 
 header a {
@@ -33,7 +30,6 @@ button {
 
 button:hover {
   background-color: #E8EF93;
-  /* border: 2px solid white; */
 }
 
 input {
