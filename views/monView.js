@@ -13,29 +13,33 @@ var app = app || {};
 
   monView.initIndexPage = () => {
     monView.reset();
+    $('.logged-in-view').hide();
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
       event.preventDefault();
       localStorage.setItem('user', JSON.stringify(event.target.username.value));
-      monView.newUser();
+      monView.newUser(monView.checkLocalStorage);
     });
   };
 
-  monView.newUser = () => {
+  monView.newUser = (callback) => {
     console.log(localStorage.user);
     $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
-      .then(() => page('/'));
+      .then(callback);
     // .catch(errorCallback);
   };
 
   monView.initLoggedInView = () => {
     monView.reset();
-    $('.loggedInView').show();
-    app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    $('.make-new-mon-button').show();
+    $('.logged-in-view').show();
+    app.Mon.all.map(mon => $('#user-pokemon-list').append(mon.toHtml()));
   };
 
   monView.initNewMon = () => {
     monView.reset();
+    $('.make-new-mon-button').hide();
+    $('.pokemon-list').hide();
     $('.new-mon-view').show();
     $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
