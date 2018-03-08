@@ -3,7 +3,7 @@ main {
   min-height: 100vh;
   margin: 0 auto 20px;
   padding: 20px 30px;
-  background: #3B4CCA;
+  /* background: #3B4CCA; */
   border: 1px solid #444;
 }
 header img{
