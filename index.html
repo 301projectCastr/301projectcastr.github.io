@@ -34,8 +34,8 @@
           <li>Special Defense: {{sdef_stat}}</li>
           <li>Speed: {{speed_stat}}</li>
       </ul>
-      <button class="select-mon-button" data-monid="{{mon_id}}">Choose</button>
-      <button class="view-mon-button" data-monid="{{mon_id}}">View</button>
+      <button class="select-mon-button" data-monid="{{mon_id}}">Choose for Battle</button>
+      <button class="view-mon-button" data-monid="{{mon_id}}">Change Name</button>
       <button class="delete-mon-button" data-monid="{{mon_id}}">Release</button>
     </section>
   </script>
@@ -135,9 +135,8 @@
     <section class="detail-view container">
         <form id="nick-update-form">
           <label>Give them a nick name!</label>
-          <input type="text" name="nickInput" required>
+          <input id="nick-input" type="text" name="nickInput" required>
           <button>Submit</button>
-          <button id="retire-button">Retire</button>
         </form>
         <section id="detail-view-pokemon"></section>
     </section>
