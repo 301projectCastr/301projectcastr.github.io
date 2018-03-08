@@ -39,11 +39,11 @@ var app = app || {};
     $('.select-mon-button').off('click'); // Remove any listeners on the object
     $('.select-mon-button').on('click', function (event) { // add the listener
       event.preventDefault();
-      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('.view-mon-button').on('click', function (event) {
       event.preventDefault();
-      module.monView.initDetailView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initDetailView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('.delete-mon-button').off('click');
     $('.delete-mon-button').on('click', function () {
@@ -91,7 +91,7 @@ var app = app || {};
     $('.view-mon-button').hide();
     $('.select-mon-button').on('click', function (event) { // add the listener
       event.preventDefault();
-      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
@@ -137,6 +137,11 @@ var app = app || {};
     $('.pokemon-challenger').append(template(champ));
     template = Handlebars.compile($('#poke-card-template').text());
     $('.opponent-view').append(template(opponent));
+  };
+
+  monView.aboutUsPage = () => {
+    monView.reset();
+    $('.about-us').show();
   };
 
   monView.checkLocalStorage = () => {
