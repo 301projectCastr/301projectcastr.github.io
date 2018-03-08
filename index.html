@@ -14,7 +14,7 @@
 
    <!-- template for Pokemon card -->
   <script id="poke-card-template" type="text/x-handlebars-template">
-    <section class="poke-card" data-monId="{{user_name}}">
+    <section class="poke-card" data-monId="{{mon_id}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
         <li>Name: {{mon_nick}}</li>
@@ -33,7 +33,7 @@
           <li>Special Defense: {{sdef_stat}}</li>
           <li>Speed: {{speed_stat}}</li>
       </ul>
-      <button class="select-mon-button">Choose</button>
+      <button class="select-mon-button" data-monid="{{mon_id}}">Choose</button>
     </section>
   </script>
   <!-- template for the error route -->
