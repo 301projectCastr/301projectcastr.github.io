@@ -132,6 +132,8 @@ var app = app || {};
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-challenger ').append(template(champ));
     $('.opponent-view').append(template(opponent));
+    $('.poke-name').hide();
+    $('.fight-button-hide').hide();
     $('#fight-button').off('click');
     $('#fight-button').on('click', function () {
       if(module.Mon.fight(champ, opponent) === champ) {
@@ -175,6 +177,7 @@ var app = app || {};
     $('.opponents-list').append(template(monObj));
     $('.view-mon-button').hide();
     $('.delete-mon-button').hide();
+    $('.poke-name').hide();
     $('.select-mon-button').off('click');
     $('.select-mon-button').on('click', function(event) {
       event.preventDefault();

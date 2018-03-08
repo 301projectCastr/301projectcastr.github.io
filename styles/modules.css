@@ -1,8 +1,3 @@
-section {
-  /* padding: 0 20px; */
-  /* border: thin solid white; */
-}
-
 header a {
   color: white;
 }
@@ -52,17 +47,23 @@ input {
   float: left;
 }
 
+.poke-card ul {
+  margin-bottom: 15px;
+}
 .poke-card img {
   height: auto;
   width: 33%;
 }
 
+.poke-card .buttons {
+  clear: both;
+}
 .poke-card-fight-info {
   font-size: 24px;
 }
 
-.select-mon-button {
-  display: block;
+.card-button {
+  padding: 10px;
 }
 
 .new-mon-view * {
@@ -88,11 +89,8 @@ button {
 }
 
 button:hover {
-  /* background-color: #E8EF93; */
-  /* border: 2px solid white; */
   background-color: white;
-  color: #2462BE;
-  
+  color: #2462BE; 
 }
 
 input {
@@ -117,4 +115,34 @@ input {
   width: 50%;
   height: 40px;
   text-align: center;
+}
+
+#fight-status {
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+#fight-button {
+  width: 200px;
+  height: 50px;
+}
+.about-us h1 {
+  color: white;
+}
+.about-us h2{
+  color: #444;
+  text-shadow: none;
+}
+.about-us p{
+  color: #444;
+  font-size: 1.5em;
+}
+.about-us img {
+  margin-right: 15px;
+  border-radius: 10px;
+}
+
+.poke-card.kevin img {
+  max-height: 220px;
+  width: auto;
 }
