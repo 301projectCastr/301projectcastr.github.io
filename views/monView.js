@@ -60,6 +60,7 @@ var app = app || {};
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
       let name = event.target.pokeSelect.value;
+      if(name === 'random') name = Math.floor(Math.random() * Math.floor(800));
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
@@ -111,6 +112,7 @@ var app = app || {};
     // 949
     monView.reset();
     $('.opponents-list').empty();
+    $('.pokemon-champ').empty();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
