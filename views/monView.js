@@ -32,6 +32,11 @@ var app = app || {};
     monView.reset();
     $('.loggedInView').show();
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function (event) {
+      event.preventDefault();
+      module.monView.initPickFightView($(this).data('monid'));
+    });
   };
 
   monView.initNewMon = () => {
@@ -77,10 +82,20 @@ var app = app || {};
     });
   };
 
-  monView.initPickFightView = () => {
+  monView.initPickFightView = (mon_id) => {
+    console.log(mon_id);
+    // let monObj = module.Mon.all.findIndex(i => i.mon_id === mon_id);
+    let monObj;
+    for(let i in module.Mon.all) {
+      if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
     monView.reset();
     $('.pick-fight-view').show();
-
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.pokemon-champ').append(template(monObj));
+    module.Mon.catchOne('pikachu', module.monView.populateOpp);
+    module.Mon.catchOne('axew', module.monView.populateOpp);
+    module.Mon.catchOne('mew', module.monView.populateOpp);
   };
 
   monView.initFightView = () => {
@@ -102,6 +117,11 @@ var app = app || {};
   monView.logout = () => {
     localStorage.clear();
     window.location = '../';
+  };
+
+  monView.populateOpp = monObj => {
+    let template = Handlebars.compile($('#poke-card-template').text());
+    $('.opponents-list').append(template(monObj));
   };
 
   module.monView = monView;
