@@ -109,7 +109,7 @@ var app = app || {};
 
   monView.initPickFightView = monObj => {
     module.Mon.opponants = [];
-    // 949
+    const pokeRange = 800;// 800 pokemon id range
     monView.reset();
     $('.opponents-list').empty();
     $('.pokemon-champ').empty();
@@ -117,9 +117,9 @@ var app = app || {};
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
     $('.pokemon-champ .select-mon-button').hide();
-    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
-    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
-    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(800)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
   };
 
   monView.initFightView = (champ, opponentName) => {
