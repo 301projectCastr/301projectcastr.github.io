@@ -107,36 +107,42 @@ var app = app || {};
   };
 
   monView.initPickFightView = monObj => {
+    module.Mon.opponants = [];
     monView.reset();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
     $('.pokemon-champ .select-mon-button').hide();
-    $('.view-mon-button').hide();
-    $('.delete-mon-button').hide();
     module.Mon.catchOne('pikachu', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide(); // Dosen't work
     module.Mon.catchOne('axew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
     module.Mon.catchOne('mew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
-    $('.select-mon-button').off('click');
-    $('.select-mon-button').on('click', function(event) {
-      event.preventDefault();
-      monView.initFightView(monObj, monView.getMonById($(this).data('monid')));
-    });
   };
 
-  monView.initFightView = (champ, opponent) => {
+  monView.initFightView = (champ, opponentName) => {
+    let opponent = module.monView.getMonByName(opponentName);
     monView.reset();
+    console.log(champ);
+    console.log(opponent);
+    $('#fight-results').empty();
     $('.fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('.pokemon-challenger').append(template(champ));
-    template = Handlebars.compile($('#poke-card-template').text());
+    $('.pokemon-challenger ').append(template(champ));
     $('.opponent-view').append(template(opponent));
+    $('#fight-button').off('click');
+    $('#fight-button').on('click', function () {
+      if(champ.hp_stat > opponent.hp_stat) {
+        $('#fight-results').text(`${champ.mon_nick} is the winner!`);
+        champ.wins ++;
+      } else {
+        $('#fight-results').text(`${opponent.mon_name} is the winner!`);
+        champ.losses ++;
+        console.log(champ);
+      }
+    });
+    $('#home-button').off('click');
+    $('#home-button').on('click', function () {
+      module.Mon.update(champ);
+    });
   };
 
   monView.aboutUsPage = () => {
@@ -160,14 +166,30 @@ var app = app || {};
   };
 
   monView.populateOpp = monObj => {
+    module.Mon.opponants.push(monObj);
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.opponents-list').append(template(monObj));
+    $('.view-mon-button').hide();
+    $('.delete-mon-button').hide();
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function(event) {
+      event.preventDefault();
+      monView.initFightView(monView.getMonById($('.pokemon-champ .poke-card' ).data('monid')), $(this).data('name'));
+    });
   };
   //Helper function to get a mon object from the mon id.
   monView.getMonById = mon_id => {
     let monObj;
     for(let i in module.Mon.all) {
       if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
+    return monObj;
+  };
+
+  monView.getMonByName = mon_name => {
+    let monObj;
+    for(let i in module.Mon.opponants) {
+      if(module.Mon.opponants[i].mon_name === mon_name) monObj = module.Mon.opponants[i];
     }
     return monObj;
   };

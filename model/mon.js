@@ -23,6 +23,7 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
   };
 
   Mon.all = [];
+  Mon.opponants = [];
 
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
 
