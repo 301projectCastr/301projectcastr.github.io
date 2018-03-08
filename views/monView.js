@@ -96,12 +96,17 @@ var app = app || {};
     module.Mon.catchOne('pikachu', module.monView.populateOpp);
     module.Mon.catchOne('axew', module.monView.populateOpp);
     module.Mon.catchOne('mew', module.monView.populateOpp);
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function(event) {
+      event.preventDefault();
+      monView.initFightView(monObj, $(this).data('monid'));
+    });
   };
 
-  monView.initFightView = () => {
+  monView.initFightView = (monobj, mon_id) => {
     monView.reset();
     $('.fight-view').show();
-
+    
   };
 
   monView.checkLocalStorage = () => {
