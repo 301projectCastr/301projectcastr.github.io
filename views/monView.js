@@ -102,35 +102,24 @@ var app = app || {};
   };
 
   monView.initPickFightView = monObj => {
+    module.Mon.opponants = [];
     monView.reset();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
     $('.pokemon-champ .select-mon-button').hide();
-    $('.view-mon-button').hide();
-    $('.delete-mon-button').hide();
     module.Mon.catchOne('pikachu', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide(); // Dosen't work
     module.Mon.catchOne('axew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
     module.Mon.catchOne('mew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
-    $('.select-mon-button').off('click');
-    $('.select-mon-button').on('click', function(event) {
-      event.preventDefault();
-      monView.initFightView(monObj, monView.getMonById($(this).data('monid')));
-    });
   };
 
   monView.initFightView = (champ, opponent) => {
+    console.log(opponent);
+    console.log(champ);
     monView.reset();
     $('.fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-challenger').append(template(champ));
-    template = Handlebars.compile($('#poke-card-template').text());
     $('.opponent-view').append(template(opponent));
   };
 
@@ -150,8 +139,16 @@ var app = app || {};
   };
 
   monView.populateOpp = monObj => {
+    module.Mon.opponants.push(monObj);
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.opponents-list').append(template(monObj));
+    $('.view-mon-button').hide();
+    $('.delete-mon-button').hide();
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function(event) {
+      event.preventDefault();
+      monView.initFightView(monView.getMonById($('.pokemon-champ .poke-card' ).data('monid')), $(this).data('name'));
+    });
   };
   //Helper function to get a mon object from the mon id.
   monView.getMonById = mon_id => {
