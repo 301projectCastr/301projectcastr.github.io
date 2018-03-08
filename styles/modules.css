@@ -23,7 +23,7 @@ h2 {
 
 button {
   border-radius: 10px;
-  background-color: #4cb0bd;
+  background-color: #2462BE;
   font-weight: bold;
   font-size: 18px;
 }
@@ -81,14 +81,18 @@ input {
 }
 button {
   border-radius: 10px;
-  background-color: #4cb0bd;
+  background-color: #2462BE;
   font-weight: bold;
   font-size: 18px;
+  color: white
 }
 
 button:hover {
-  background-color: #E8EF93;
+  /* background-color: #E8EF93; */
   /* border: 2px solid white; */
+  background-color: white;
+  color: #2462BE;
+  
 }
 
 input {

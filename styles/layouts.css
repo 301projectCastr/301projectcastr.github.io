@@ -30,6 +30,11 @@ nav li{
   margin-right: 1em;
   text-shadow: 1px 1px #000;
 }
+
+nav li a:hover {
+  color: #2462BE;
+}
+
 nav li:last-of-type {
   margin-right: 0;
 }
