@@ -132,6 +132,7 @@ var app = app || {};
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-challenger ').append(template(champ));
     $('.opponent-view').append(template(opponent));
+    $('.poke-name').hide();
     $('.fight-button-hide').hide();
     $('#fight-button').off('click');
     $('#fight-button').on('click', function () {

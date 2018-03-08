@@ -118,3 +118,13 @@ input {
   height: 40px;
   text-align: center;
 }
+
+#fight-status {
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+#fight-button {
+  width: 200px;
+  height: 50px;
+}
