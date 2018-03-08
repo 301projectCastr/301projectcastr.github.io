@@ -6,7 +6,7 @@ main {
 }
 header {
   color: white;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(29, 87, 194, 0.3);
 }
 header img{
   width: 75px;
@@ -32,7 +32,7 @@ nav li{
 }
 
 nav li a:hover {
-  color: #2462BE;
+  color: #E8EF93;
 }
 
 nav li:last-of-type {
@@ -51,6 +51,7 @@ nav li a {
     margin-top: 56px;
     display: inline-block;
   }
+
 }
 
 @media (min-width: 768px) {
