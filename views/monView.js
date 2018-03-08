@@ -109,6 +109,7 @@ var app = app || {};
   monView.initPickFightView = monObj => {
     module.Mon.opponants = [];
     monView.reset();
+    $('.opponents-list').empty();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));

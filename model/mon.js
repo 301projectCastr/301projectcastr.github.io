@@ -99,6 +99,12 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       .then(() => page('/'))
       .catch(errorCallback);
 
+  Mon.fight = (champ, opponant) => {
+    let statList = ['hp_stat', 'atk_stat', 'def_stat', 'satk_stat', 'sdef_stat', 'speed_stat'];
+    let randStat = Math.floor(Math.random() * Math.floor(statList.length));
+    
+  } 
+
   module.Mon = Mon;
 
 })(app);
