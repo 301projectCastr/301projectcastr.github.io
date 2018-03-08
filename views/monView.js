@@ -13,6 +13,7 @@ var app = app || {};
 
   monView.initIndexPage = () => {
     monView.reset();
+    $('#logout-button').hide();
     $('.logged-in-view').hide();
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
@@ -31,6 +32,7 @@ var app = app || {};
 
   monView.initLoggedInView = () => {
     monView.reset();
+    $('#logout-button').show();
     $('#user-pokemon-list').empty();
     $('.pokemon-list').show();
     app.Mon.all.map(mon => $('.pokemon-list').append(mon.toHtml()));
