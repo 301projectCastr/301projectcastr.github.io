@@ -95,6 +95,10 @@ var app = app || {};
       newMon.mon_nick = event.target.nickInput.value;
       module.Mon.update(newMon);
     });
+    $('.delete-mon-button').off('click');
+    $('.delete-mon-button').on('click', function () {
+      module.Mon.retire($(this).data('monid'));
+    });
   };
 
   monView.initPickFightView = monObj => {
