@@ -164,12 +164,18 @@ input {
   position: relative;
 }
 #fight-status img {
-  width: 200px;
+  width: 370px;
   height: auto; 
   position: absolute;
-  top: -80px;
-  left: calc(50% - 100px);
+  top: -68px;
+  left: calc(50% - 185px);
   z-index: -1;
+}
+#fight-status #they-win-img {
+  top: -24px;
+  opacity: 0.6;
+  border-radius: 10px;
+  height: 94px;
 }
 #fight-status #home-button {
   clear: both;
@@ -177,10 +183,12 @@ input {
   margin: 0 auto;
 }
 div#loading {
-  border-radius: 100%;
+  width: 160px;
+  height: 160px;
+  background-color: #fff ;
+  padding: 20px 10px 10px 30px;
+  border-radius: 100% ;
   overflow: hidden;
-  width: 105px;
-  height: 105px;
   margin-top: 20px;
 }
 #loading-img {
