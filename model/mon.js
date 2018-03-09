@@ -2,13 +2,8 @@
 
 var app = app || {};
 
-<<<<<<< HEAD
 var __API_URL__ = 'http://localhost:3000';
 // var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
-=======
-//var __API_URL__ = 'http://localhost:3000';
-var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
->>>>>>> fe3f3b524e517da0f725f48b71df573b52106779
 var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
 
