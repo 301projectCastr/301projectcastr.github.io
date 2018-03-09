@@ -1,6 +1,6 @@
 'use strict';
 // if(window.location.pathname !== '/') {
-page.base('/castr-client');
+// page.base('/castr-client');
 // }
 
 page('/', ctx => app.monView.checkLocalStorage()); // main view logged in or not.
