@@ -19,16 +19,16 @@ var app = app || {};
     $('.login-view').show();
     $('#login-form').on('submit', function(event) {
       localStorage.setItem('user', JSON.stringify((event.target.username.value).toLowerCase()));
-      monView.newUser(monView.checkLocalStorage);
+      app.Mon.newUser(app.monView.checkLocalStorage);
     });
   };
 
-  monView.newUser = (callback) => {
-    console.log(localStorage.user);
-    $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
-      .then(callback);
-    // .catch(errorCallback);
-  };
+  // monView.newUser = (callback) => {
+  //   console.log(localStorage.user);
+  //   $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
+  //     .then(callback);
+  //   // .catch(errorCallback);
+  // };
 
   monView.initLoggedInView = () => {
     monView.reset();
@@ -98,6 +98,7 @@ var app = app || {};
       //pass mon_id through the helper function and get an object out.
       module.monView.initPickFightView(monView.getMonById($(this).data('monid')));
     });
+    $('#levelup-button').hide();
     if(newMon.wins > newMon.level - 1 )$('#levelup-button').show();
     $('#levelup-button').off('click');
     $('#levelup-button').on('click', function () {

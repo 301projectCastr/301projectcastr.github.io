@@ -2,8 +2,8 @@
 
 var app = app || {};
 
-//var __API_URL__ = 'http://localhost:3000';
-var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
+var __API_URL__ = 'http://localhost:3000';
+// var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
 var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
 
@@ -50,7 +50,14 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
-  
+
+  Mon.newUser = (callback) => {
+    console.log(localStorage.user);
+    $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
+      .then(callback);
+    // .catch(errorCallback);
+  };
+
   Mon.fetchLast = callback => {
     console.log('in fetchLast');
     $.get(`${__API_URL__}/fetchLast`)
