@@ -91,32 +91,11 @@
               <option value="leafeon">Leafeon</option>
               <option value="random">Random</option>
           </select>
-          <!-- <select id="">
-              <option value=""> Option 2 </option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select>
-          <select id="">
-              <option value=""> Option 3 </option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select> -->
-          <!-- <select id="">
-              <option value="">Option 4</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select>
-          <select id="">
-              <option value=""> Option 5</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-              <option value="">Value</option>
-          </select> -->
           <button>Throw Ball</button>
       </form>
+      <div class="hidden" id="loading">
+      <img id="loading-img" src="img/pokeball.gif">
+      </div>
     </section>
     <!-- PickFIght View section -->
     <section class="pick-fight-view header">
@@ -134,6 +113,8 @@
         <div id="fight-status">
           <button id="fight-button">Fight</button>
           <p id="fight-results"></p>
+          <img class="hidden" id="you-win-img" src="img/fireworks5.gif">
+          <img class="hidden" id="they-win-img" src="img/fireworks5.gif">
           <button id="home-button">Return Home</button>
         </div>
         <div class="opponent-view"></div>
