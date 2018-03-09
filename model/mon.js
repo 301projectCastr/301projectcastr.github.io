@@ -24,9 +24,9 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
   Mon.all = [];
   Mon.opponants = [];
-  
+
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
-  
+
   Mon.catchOne = (name, callback) =>
     $.get(`${__POKE_API__}pokemon/${name}/`)
       .then(results => results = {
@@ -50,7 +50,14 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
-  
+
+  Mon.newUser = (callback) => {
+    console.log(localStorage.user);
+    $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
+      .then(callback);
+    // .catch(errorCallback);
+  };
+
   Mon.fetchLast = callback => {
     console.log('in fetchLast');
     $.get(`${__API_URL__}/fetchLast`)
