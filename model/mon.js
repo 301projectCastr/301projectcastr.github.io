@@ -116,7 +116,5 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
     if (champAtk >= oppAtk) return champ;
     else return opponant;
   };
-
   module.Mon = Mon;
-
 })(app);
