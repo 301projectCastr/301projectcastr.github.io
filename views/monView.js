@@ -60,6 +60,7 @@ var app = app || {};
     $('#new-mon-form').off('submit');
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
+      $('#loading').show();
       let name = event.target.pokeSelect.value;
       if(name === 'random') name = Math.floor(Math.random() * Math.floor(800));
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
@@ -132,8 +133,10 @@ var app = app || {};
     $('.opponent-view').empty();
     $('#fight-results').empty();
     $('.fight-view').show();
+    $('#fight-button').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-challenger').append(template(champ));
+
     $('.opponent-view').append(template(opponent));
     $('.poke-name').hide();
     $('.fight-button-hide').hide();
@@ -145,10 +148,11 @@ var app = app || {};
         champ.wins ++;
       } else {
         $('#fight-results').text(`${opponent.mon_name} is the winner!`);
-        $('#they-win-img').show();
+        // $('#they-win-img').show();
         champ.losses ++;
         console.log(champ);
       }
+      $('#fight-button').hide();
     });
     $('#home-button').off('click');
     $('#home-button').on('click', function () {
