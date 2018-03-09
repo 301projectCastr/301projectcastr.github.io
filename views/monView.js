@@ -9,6 +9,7 @@ var app = app || {};
     $('#user-pokemon-list').empty(); // Empty the pokemon list to prevent double appends.
     $('.container').hide(); // hide all containers
     $('.header').hide(); // hide stuff we don't want emptied as well
+    $('.hidden').hide();
   };
 
   monView.initIndexPage = () => {
@@ -140,9 +141,11 @@ var app = app || {};
     $('#fight-button').on('click', function () {
       if(module.Mon.fight(champ, opponent) === champ) {
         $('#fight-results').text(`${champ.mon_nick} is the winner!`);
+        $('#you-win-img').show();
         champ.wins ++;
       } else {
         $('#fight-results').text(`${opponent.mon_name} is the winner!`);
+        $('#they-win-img').show();
         champ.losses ++;
         console.log(champ);
       }
