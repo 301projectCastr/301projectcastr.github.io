@@ -33,7 +33,7 @@ input {
 }
 
 .poke-card {
-  padding: 10px 10px;
+  padding: 20px;
   border: 2px solid #BC3F1B;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgb(175, 96, 74);
@@ -53,6 +53,7 @@ input {
 .poke-card img {
   height: auto;
   width: 33%;
+  max-width: 150px;
 }
 
 .poke-card .buttons {
