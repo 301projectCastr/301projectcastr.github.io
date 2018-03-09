@@ -165,7 +165,7 @@ var app = app || {};
         champ.wins ++;
       } else {
         $('#fight-results').text(`${opponent.mon_name} is the winner!`);
-        // $('#they-win-img').show();
+        $('#they-win-img').show();
         champ.losses ++;
         console.log(champ);
       }
