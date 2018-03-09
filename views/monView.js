@@ -39,11 +39,11 @@ var app = app || {};
     $('.select-mon-button').off('click'); // Remove any listeners on the object
     $('.select-mon-button').on('click', function (event) { // add the listener
       event.preventDefault();
-      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('.view-mon-button').on('click', function (event) {
       event.preventDefault();
-      module.monView.initDetailView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initDetailView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('.delete-mon-button').off('click');
     $('.delete-mon-button').on('click', function () {
@@ -60,6 +60,7 @@ var app = app || {};
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
       let name = event.target.pokeSelect.value;
+      if(name === 'random') name = Math.floor(Math.random() * Math.floor(800));
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
           let newMon = {
@@ -91,7 +92,7 @@ var app = app || {};
     $('.view-mon-button').hide();
     $('.select-mon-button').on('click', function (event) { // add the listener
       event.preventDefault();
-      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out. 
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
     });
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
@@ -107,36 +108,54 @@ var app = app || {};
   };
 
   monView.initPickFightView = monObj => {
+    module.Mon.opponants = [];
+    const pokeRange = 800;// 800 pokemon id range
     monView.reset();
+    $('.opponents-list').empty();
+    $('.pokemon-champ').empty();
     $('.pick-fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-champ').append(template(monObj));
     $('.pokemon-champ .select-mon-button').hide();
-    $('.view-mon-button').hide();
-    $('.delete-mon-button').hide();
-    module.Mon.catchOne('pikachu', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide(); // Dosen't work
-    module.Mon.catchOne('axew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
-    module.Mon.catchOne('mew', module.monView.populateOpp);
-    $('.view-mon-button').hide(); // Repeated because the api calls happen after the inital hide
-    $('.delete-mon-button').hide();
-    $('.select-mon-button').off('click');
-    $('.select-mon-button').on('click', function(event) {
-      event.preventDefault();
-      monView.initFightView(monObj, monView.getMonById($(this).data('monid')));
-    });
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
+    module.Mon.catchOne(Math.floor(Math.random() * Math.floor(pokeRange)), module.monView.populateOpp);
   };
 
-  monView.initFightView = (champ, opponent) => {
+  monView.initFightView = (champ, opponentName) => {
+    let opponent = module.monView.getMonByName(opponentName);
     monView.reset();
+    console.log(champ);
+    console.log(opponent);
+    $('.pokemon-challenger').empty();
+    $('.opponent-view').empty();
+    $('#fight-results').empty();
     $('.fight-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.pokemon-challenger').append(template(champ));
-    template = Handlebars.compile($('#poke-card-template').text());
     $('.opponent-view').append(template(opponent));
+    $('.poke-name').hide();
+    $('.fight-button-hide').hide();
+    $('#fight-button').off('click');
+    $('#fight-button').on('click', function () {
+      if(module.Mon.fight(champ, opponent) === champ) {
+        $('#fight-results').text(`${champ.mon_nick} is the winner!`);
+        champ.wins ++;
+      } else {
+        $('#fight-results').text(`${opponent.mon_name} is the winner!`);
+        champ.losses ++;
+        console.log(champ);
+      }
+    });
+    $('#home-button').off('click');
+    $('#home-button').on('click', function () {
+      module.Mon.update(champ);
+    });
+  };
+
+  monView.aboutUsPage = () => {
+    monView.reset();
+    $('.about-us').show();
   };
 
   monView.checkLocalStorage = () => {
@@ -155,14 +174,31 @@ var app = app || {};
   };
 
   monView.populateOpp = monObj => {
+    module.Mon.opponants.push(monObj);
     let template = Handlebars.compile($('#poke-card-template').text());
     $('.opponents-list').append(template(monObj));
+    $('.view-mon-button').hide();
+    $('.delete-mon-button').hide();
+    $('.poke-name').hide();
+    $('.select-mon-button').off('click');
+    $('.select-mon-button').on('click', function(event) {
+      event.preventDefault();
+      monView.initFightView(monView.getMonById($('.pokemon-champ .poke-card' ).data('monid')), $(this).data('name'));
+    });
   };
   //Helper function to get a mon object from the mon id.
   monView.getMonById = mon_id => {
     let monObj;
     for(let i in module.Mon.all) {
       if(module.Mon.all[i].mon_id === mon_id) monObj = module.Mon.all[i];
+    }
+    return monObj;
+  };
+
+  monView.getMonByName = mon_name => {
+    let monObj;
+    for(let i in module.Mon.opponants) {
+      if(module.Mon.opponants[i].mon_name === mon_name) monObj = module.Mon.opponants[i];
     }
     return monObj;
   };

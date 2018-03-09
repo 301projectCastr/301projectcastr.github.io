@@ -18,11 +18,11 @@
     <section class="poke-card" data-monid="{{mon_id}}">
       <img src="{{image_url}}">
       <ul class="poke-card-fight-info">
-        <li>Name: {{mon_nick}}</li>
+        <li class="poke-name">Name: {{mon_nick}}</li>
         <li>Species: {{mon_name}}</li>
-        <li>Wins: {{wins}}</li>
-        <li>Loses: {{loses}}</li>
-        <li>Levels: {{levels}}</li>
+        <li class="poke-name">Wins: {{wins}}</li>
+        <li class="poke-name">losses: {{losses}}</li>
+        <li class="poke-name">Levels: {{levels}}</li>
       </ul>
       <ul class="poke-card-stats">
           <li>Type 1: {{type_one}}</li>
@@ -34,9 +34,11 @@
           <li>Special Defense: {{sdef_stat}}</li>
           <li>Speed: {{speed_stat}}</li>
       </ul>
-      <button class="select-mon-button" data-monid="{{mon_id}}">Choose for Battle</button>
-      <button class="view-mon-button" data-monid="{{mon_id}}">Change Name</button>
-      <button class="delete-mon-button" data-monid="{{mon_id}}">Release</button>
+      <div class="buttons">
+      <button class="card-button select-mon-button fight-button-hide" data-monid="{{mon_id}}" data-name="{{mon_name}}">Choose for Battle</button>
+      <button class="card-button view-mon-button fight-button-hide" data-monid="{{mon_id}}">Change Name</button>
+      <button class="card-button delete-mon-button fight-button-hide" data-monid="{{mon_id}}">Release</button>
+      </div>
     </section>
   </script>
   <!-- template for the error route -->
@@ -47,19 +49,21 @@
     </section>
   </script>
 </head>
-<body>
+<body> 
+    <header>
+      <div class="title-block">
+    <img src="img/transparent_back.png" alt="logo">
+    <h1>Pokemon Fight Club</h1>
+      </div>
+    <nav>
+      <ul>
+        <li> <a href="/">Home</a></li>
+        <li> <a href="/about-us">About Us</a></li>
+        <li id="logout-button"> <a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
   <main>
-      <header>
-          <img src="img/transparent_back.png" alt="logo">
-          <h1>Pokemon Fight Club</h1>
-          <nav>
-            <ul>
-              <li> <a href="/">Home</a></li>
-              <li id="logout-button"> <a href="/logout">Logout</a></li>
-            </ul>
-          </nav> 
-          <!-- <h2>{{userName}}</h2> -->
-        </header>
     <!-- View for new user, not logged in -->
     <section class="login-view header">
       <form id="login-form">
@@ -85,6 +89,7 @@
               <option value="spheal">Spheal</option>
               <option value="torchic">Torchic</option>
               <option value="leafeon">Leafeon</option>
+              <option value="random">Random</option>
           </select>
           <!-- <select id="">
               <option value=""> Option 2 </option>
@@ -123,11 +128,15 @@
     </section>
     <!-- Fight View section -->
     <section class="fight-view header">
-      <h4>Fight info text or imaging goes here</h4>
+      <h4>Welcome to the Arena!</h4>
       <section class="arena">
-        <div class="pokemon-challenger container"></div>
-        <div id="fight-status"></div>
-        <div class="opponent-view container"></div>
+        <div class="pokemon-challenger"></div>
+        <div id="fight-status">
+          <button id="fight-button">Fight</button>
+          <p id="fight-results"></p>
+          <button id="home-button">Return Home</button>
+        </div>
+        <div class="opponent-view"></div>
       </section>
     </section>
     <!-- Pokemon Detail View section -->
@@ -139,7 +148,33 @@
         </form>
         <section id="detail-view-pokemon"></section>
     </section>
-    
+    <section class="about-us container">
+      <h1>The Devs</h1>
+      <section class="poke-card ramon">
+      <h2>Ramon Mendoza</h2>
+        <img src="img/Ramon.png" alt="ramon">
+        <p>Cars, computers and video games have always been a part my life. Coding has only been my interest for a very small fraction of that time, but I enjoy it as much as the rest. As a software developer my goal is to work in my four wonders of the world.</p>
+      </section>
+      <section class="poke-card jose">
+      <h2>Jose Flores</h2>
+        <img src="img/jose.JPG" alt="jose">
+        <p>Born and raised in Texas, Jose moved here for his first duty station while serving in the Army. After ten years of service, Jose continued to work with veterans by serving with local Veteran Service Organizations. Now Jose is a student at Code Fellows to become a full stack JavaScript Web Developer.</p>
+      </section>
+      <section class="poke-card kevin">
+      <h2>Kevin Farrow</h2>
+        <img src="img/kevin.jpg" alt="kevin">
+        <p>An experienced leader and support specialist with a technology background and a passion for coordination, efficiency, and leveraging technology to create better outcomes.Passionate about storytelling and interactive media as the next great storytelling medium.</p>
+      </section>
+      <section class="poke-card jennifer">
+      <h2>Jennifer Piper</h2>
+        <img src="img/JenniferPiper.jpg" alt="jennifer">
+        <p>I’m a web developer with full-stack skills and a passion for front-end excellence. I love how good code and good design fit together to make good user experiences.</p>
+      </section>
+      <section class="poke-card carl">
+      <h2>Carl Olson</h2>
+        <img src="img/Carl.jpg" alt="carl">
+        <p>I'm a software developer with a passion for coding and solving problems. I love playing music, sports, cooking, and hanging with my 2 year old son.</p>
+    </section>
 
     <!-- Error View section -->
   </main>

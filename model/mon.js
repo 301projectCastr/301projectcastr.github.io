@@ -2,8 +2,8 @@
 
 var app = app || {};
 
-// var __API_URL__ = 'http://localhost:3000';
-var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
+var __API_URL__ = 'http://localhost:3000';
+//var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
 var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
 
@@ -23,15 +23,16 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
   };
 
   Mon.all = [];
-
+  Mon.opponants = [];
+  
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
-
+  
   Mon.catchOne = (name, callback) =>
     $.get(`${__POKE_API__}pokemon/${name}/`)
       .then(results => results = {
         mon_name: results.name,
         image_url: results.sprites.front_default,
-        type_one: results.types[0].type,
+        type_one: results.types[0].type.name,
         type_two: results.types[1] ? results.types[1].type.name : '',
         hp_stat: results.stats[5].base_stat,
         atk_stat: results.stats[4].base_stat,
@@ -97,6 +98,17 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
     })
       .then(() => page('/'))
       .catch(errorCallback);
+
+  Mon.fight = (champ, opponant) => {
+    let statList = ['hp_stat', 'atk_stat', 'def_stat', 'satk_stat', 'sdef_stat', 'speed_stat'];
+    let randStat = Math.floor(Math.random() * Math.floor(statList.length));
+    console.log(statList[randStat]);
+    let champAtk = champ[statList[randStat]] + Math.floor(Math.random() * Math.floor(champ.atk_stat));
+    let oppAtk = opponant[statList[randStat]] + Math.floor(Math.random() * Math.floor(opponant.atk_stat));
+    console.log(`c: ${champAtk} o: ${oppAtk}`);
+    if (champAtk >= oppAtk) return champ;
+    else return opponant;
+  };
 
   module.Mon = Mon;
 
