@@ -86,20 +86,37 @@ var app = app || {};
 
   monView.initDetailView = (ctx) => {
     monView.reset();
+    let newMon = ctx;
     $('#detail-view-pokemon').empty();
     $('#nick-input').val('');
     $('.detail-view').show();
     let template = Handlebars.compile($('#poke-card-template').text());
-    $('#detail-view-pokemon').append(template(ctx));
+    $('#detail-view-pokemon').append(template(newMon));
     $('.view-mon-button').hide();
     $('.select-mon-button').on('click', function (event) { // add the listener
       event.preventDefault();
-      module.monView.initPickFightView(monView.getMonById($(this).data('monid'))); //pass mon_id through the helper function and get an object out.
+      //pass mon_id through the helper function and get an object out.
+      module.monView.initPickFightView(monView.getMonById($(this).data('monid')));
+    });
+    if(newMon.wins > newMon.level - 1 )$('#levelup-button').show();
+    $('#levelup-button').off('click');
+    $('#levelup-button').on('click', function () {
+      let statGainLimit = 10;
+      console.log(newMon);
+      console.log(Math.floor(Math.random() * Math.floor(statGainLimit)));
+      newMon.hp_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.atk_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.def_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.satk_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.sdef_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.speed_stat += Math.floor(Math.random() * Math.floor(statGainLimit));
+      newMon.levels ++;
+      console.log(newMon);
+      module.Mon.update(newMon);
     });
     $('#nick-update-form').off('submit');
     $('#nick-update-form').on('submit', function(event) {
       event.preventDefault();
-      let newMon = ctx;
       newMon.mon_nick = event.target.nickInput.value;
       module.Mon.update(newMon);
     });
@@ -201,7 +218,7 @@ var app = app || {};
     }
     return monObj;
   };
-
+  //Helper function to grab a pokemon by name from the opp array.
   monView.getMonByName = mon_name => {
     let monObj;
     for(let i in module.Mon.opponants) {
