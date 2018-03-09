@@ -2,8 +2,8 @@
 
 var app = app || {};
 
-var __API_URL__ = 'http://localhost:3000';
-//var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
+// var __API_URL__ = 'http://localhost:3000';
+var __API_URL__ = 'https://code301-project-castr.herokuapp.com';
 var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
 
@@ -24,9 +24,9 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
 
   Mon.all = [];
   Mon.opponants = [];
-  
+
   Mon.loadAll = rows => Mon.all = rows.sort((a, b) => b.mon_id - a.mon_id).map(mon => new Mon(mon));
-  
+
   Mon.catchOne = (name, callback) =>
     $.get(`${__POKE_API__}pokemon/${name}/`)
       .then(results => results = {
@@ -109,7 +109,5 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
     if (champAtk >= oppAtk) return champ;
     else return opponant;
   };
-
   module.Mon = Mon;
-
 })(app);
