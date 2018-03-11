@@ -27,7 +27,6 @@ var app = app || {};
     console.log(localStorage.user);
     $.post(`${__API_URL__}/${JSON.parse(localStorage.user)}`)
       .then(callback);
-    // .catch(errorCallback);
   };
 
   monView.initLoggedInView = () => {
