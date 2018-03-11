@@ -52,13 +52,11 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       .catch(errorCallback);
 
   Mon.fetchLast = callback => {
-    console.log('in fetchLast');
     $.get(`${__API_URL__}/fetchLast`)
       .then(callback);
   };
 
   Mon.create = (obj, callback, callback2) => {
-    console.log('in create');
     let mon = {
       user_name: obj.user_name,
       mon_nick: obj.mon_nick ? obj.mon_nick : '',

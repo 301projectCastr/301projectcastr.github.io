@@ -61,7 +61,8 @@ var app = app || {};
     $('#new-mon-form').on('submit', function (event) {
       event.preventDefault();
       $('#loading').show();
-      let name = event.target.pokeSelect.value;
+      console.log(event.target.byNameField.value);
+      let name = event.target.byNameField.value ? event.target.byNameField.value : event.target.pokeSelect.value;
       if(name === 'random') name = Math.floor(Math.random() * Math.floor(800));
       $.get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
         .then( results => {
