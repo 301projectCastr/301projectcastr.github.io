@@ -50,7 +50,7 @@ var __POKE_API__= 'https://pokeapi.co/api/v2/';
       // .then(console.log(Mon.all))
       .then(callback)
       .catch(errorCallback);
-  
+
   Mon.fetchLast = callback => {
     console.log('in fetchLast');
     $.get(`${__API_URL__}/fetchLast`)

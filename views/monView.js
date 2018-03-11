@@ -98,7 +98,8 @@ var app = app || {};
       //pass mon_id through the helper function and get an object out.
       module.monView.initPickFightView(monView.getMonById($(this).data('monid')));
     });
-    if(newMon.wins > newMon.level - 1 )$('#levelup-button').show();
+    $('#levelup-button').hide();
+    if(newMon.wins > newMon.levels - 1 )$('#levelup-button').show();
     $('#levelup-button').off('click');
     $('#levelup-button').on('click', function () {
       let statGainLimit = 10;
