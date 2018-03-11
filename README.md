@@ -36,14 +36,16 @@ Fork these two Git repositories:
 https://github.com/301projectCastr/castr-server
 
 In the same directory as server.js:
-```export PORT=3000
+```
+export PORT=3000
 export CLIENT_URL=http://localhost:8080
 export DATABASE_URL=postgres://localhost:5432/castr
 ```
 
 Create a database named 'castr', and set it up with the following commands:
 
-```CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL UNIQUE);
+```
+CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL UNIQUE);
 
 CREATE TABLE pokemon (mon_id SERIAL PRIMARY KEY, user_name VARCHAR(255) REFERENCES users(user_name), mon_nick VARCHAR(255), mon_name VARCHAR(255), type_one VARCHAR(255), type_two VARCHAR(255), image_url VARCHAR(255), wins INTEGER, losses INTEGER, levels INTEGER, hp_stat INTEGER, atk_stat INTEGER, def_stat INTEGER, satk_stat INTEGER, sdef_stat INTEGER, speed_stat INTEGER);
 ```
